@@ -96,3 +96,15 @@ configure settings in local git
 $git config  user.mail "jodlinh@gmail.com"
 $git config user.name "jodlin"
 ```
+
+## git  commit -m
+
+create a commit with menssage
+
+```sh
+$ git commit -m "add bash and git docs"
+[main f579f45] add bash and git docs
+ 2 files changed, 176 insertions(+)
+ create mode 100644 staff/jodlin-huerta/playground/bash/README.md
+ create mode 100644 staff/jodlin-huerta/playground/git/README.MD
+```
