@@ -108,3 +108,20 @@ $ git commit -m "add bash and git docs"
  create mode 100644 staff/jodlin-huerta/playground/bash/README.md
  create mode 100644 staff/jodlin-huerta/playground/git/README.MD
 ```
+
+## git push
+
+push the change from local machine to remote repository
+
+```sh
+$ git push 
+Enumerating objects: 17, done.
+Counting objects: 100% (17/17), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (9/9), done.
+Writing objects: 100% (16/16), 2.52 KiB | 861.00 KiB/s, done.
+Total 16 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (2/2), done.
+To https://github.com/jodlinh/neoland-202510
+   c0018b0..885b546  main -> main
+```
