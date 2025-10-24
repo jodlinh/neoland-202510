@@ -125,3 +125,23 @@ remote: Resolving deltas: 100% (2/2), done.
 To https://github.com/jodlinh/neoland-202510
    c0018b0..885b546  main -> main
 ```
+
+## git log
+
+Show commits history ordered descending by time
+
+```sh
+$ git log
+commit 352881bfe6f52b51bdc4cde3980e1c84f65d04ef (HEAD -> main, origin/main, origin/HEAD)
+Author: jodlin <jodlinh@gmail.com>
+Date:   Thu Oct 23 22:04:57 2025 +0200
+
+    add push and commit comands to doc
+
+commit 885b546990db4023fd3327dc692665aa84e0bae9
+Author: jodlin <jodlinh@gmail.com>
+Date:   Thu Oct 23 21:57:43 2025 +0200
+
+    add bash and git docs
+```
+
