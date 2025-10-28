@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draw</title>
+
+    <style>
+        body{
+            background-color: black;            
+        }
+
+        /* FACE */
+
+        #frame {
+            background-color: white;
+            width: 300px;
+            height: 300px;           
+            top: 50px;
+            left: 50px;
+            position: absolute;
+            border-radius: 20px;
+        }
+
+        #face {
+            width: 250px;
+            height: 250px;
+            background-color:burlywood;
+            left: 25px;
+            top: 27px;
+            position: absolute;            
+            border-radius: 60%;
+        }
+
+        #left-eye{
+            width: 50px;
+            height: 50px;
+            background-color:white;
+            position: absolute;
+            top: 30px;
+            left: 50px;
+        }
+        #left-pupil{
+            width: 20px;
+            height: 20px;
+            background-color: blue;
+            position: absolute;
+            top: 5px;
+            left: 20px;
+        }
+        #right-eye{
+            width: 50px;
+            height: 50px;
+            background-color:white;
+            position: absolute;
+            top: 30px;
+            right: 50px;
+        }
+        #right-pupil{
+            width: 20px;
+            height: 20px;
+            background-color: blue;
+            position: absolute;
+            top: 5px;
+            left: 20px;
+        }
+
+        #noise {
+            background-color:darkolivegreen;
+            border-bottom: 5px;
+            border: black;
+            width: 30px;
+            height: 50px;
+            position: absolute;
+            top: 90px;
+            left: 108px;
+            border-radius: 10%;
+        }
+
+        #mouth {
+            background-color: red;
+            width: 170px;
+            height: 20px;
+            position: absolute;
+            top: 170px;
+            left: 40px;
+            border-radius: 80%;
+
+        }
+
+        #ear-left {
+            background-color: burlywood;
+            width: 60px;
+            height: 60px;
+            position: absolute;
+            border-radius: 50%;
+            left: 30px;
+        }
+
+        #ear-rigth {
+            background-color: burlywood;
+            width: 60px;
+            height: 60px;
+            position: absolute;
+            border-radius: 50%;
+            right: 30px;
+        }
+
+        /* SPACESHIP */
+
+        #spaceship {
+            width: 100px;
+            height: 300px;
+            background-color: white;
+            left: 500px;
+            top: 100px;
+            position: absolute;
+        }
+        #head {
+        width: 100px;
+        height: 200px;
+        background-color: rgb(255, 255, 255); 
+        position: absolute;
+        border-radius: 50%;
+        top: -90px
+        }
+
+        #wings {
+            background-color: white;
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            bottom: 15px;
+            left: -100px;
+
+
+            border-bottom: 130px solid #fff;
+            border-left:  100px solid black;
+            border-right: 100px solid black;
+            border-radius: 2%;
+        }
+
+        #left-fire {
+            background-color: orange;
+            width: 20px;
+            height: 50px;
+            position: absolute;
+            border-radius: 50%;
+            border-top: 100px solid white;
+            bottom: -50px;
+            left: 10px;
+        }
+         #right-fire {
+            background-color: orange;
+            width: 20px;
+            height: 50px;
+            position: absolute;
+            border-radius: 50%;
+            border-top: 100px solid white;
+            bottom: -50px;
+            right: 10px;
+        }
+
+        #left-windows {
+            width: 25px;
+            height: 15px;
+            position: absolute;
+            background-color: gray;
+            top: 50px;
+            left: 10px;
+            border: 1px solid black;
+            border-bottom-left-radius: 30%;
+            border-top-left-radius: 30%;
+
+        }
+        #center-windows {
+            width: 27px;
+            height: 15px;
+            position: absolute;
+            background-color: gray;
+            top: 50px;
+            left: 35px;
+            border: 1px solid black;
+
+        }
+        #right-windows {
+            width: 25px;
+            height: 15px;
+            position: absolute;
+            background-color: gray;
+            top: 50px;
+            right: 10px;
+            border: 1px solid black;
+            border-bottom-right-radius: 30%;
+            border-top-right-radius: 30%;
+
+        }
+        #command-center {
+            position: absolute;
+            width: 60px;
+            height: 120px;
+            background-color: rgb(240, 218, 194);
+            border-radius: 10%;
+            top: 20px;
+            left: 18px;
+            border: 2px solid black;
+
+        }
+
+
+        
+    </style>
+
+</head>
+<body>
+    <div id="frame">
+        <div id="face">  
+            <div id="ear-left"></div>     
+            <div id="ear-rigth"></div>   
+            <div id="left-eye">
+                <div id="left-pupil"></div>
+            </div>       
+            <div id="right-eye">
+                <div id="right-pupil"></div>
+            </div>
+            <div id="noise">
+            </div>
+            <div id="mouth">
+            </div>
+        </div>
+    </div>
+
+    <div id="spaceship">
+        <div id="head">
+            <div id="left-windows"></div>
+             <div id="center-windows"></div>
+            <div id="right-windows"></div>
+        </div>
+        <div id="wings">
+        </div>
+        <div id="left-fire"></div>
+        <div id="right-fire"></div>
+        <div id="command-center"></div>
+
+
+
+    </div>
+
+    
+    
+</body>
+</html>
