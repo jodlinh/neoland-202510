@@ -10,7 +10,7 @@
         }
 
         /* FACE */
-        #frame {
+        .frame {
             background-color: white;
             width: 300px;
             height: 300px;           
@@ -18,190 +18,174 @@
             left: 50px;
             position: absolute;
             border-radius: 20px;
-        }
+            background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);       
 
-        #face {
-            width: 250px;
-            height: 250px;
-            background-color:burlywood;
-            left: 25px;
-            top: 27px;
-            position: absolute;            
-            border-radius: 60%;
-        }
+            & .face {
+                width: 250px;
+                height: 250px;
+                background-color:burlywood;
+                left: 25px;
+                top: 27px;
+                position: absolute;            
+                border-radius: 60%;
+            }
 
-        #left-eye{
-            width: 50px;
-            height: 50px;
-            background-color:white;
-            position: absolute;
-            top: 30px;
-            left: 50px;
-        }
-        #left-pupil{
-            width: 20px;
-            height: 20px;
-            background-color: blue;
-            position: absolute;
-            top: 5px;
-            left: 20px;
-        }
-        #right-eye{
-            width: 50px;
-            height: 50px;
-            background-color:white;
-            position: absolute;
-            top: 30px;
-            right: 50px;
-        }
-        #right-pupil{
-            width: 20px;
-            height: 20px;
-            background-color: blue;
-            position: absolute;
-            top: 5px;
-            left: 20px;
-        }
+            & .eye{
+                width: 50px;
+                height: 50px;
+                background-color:white;
+                position: absolute;
+                top: 30px;         
+            }
 
-        #noise {
-            background-color:darkolivegreen;
-            border-bottom: 5px;
-            border: black;
-            width: 30px;
-            height: 50px;
-            position: absolute;
-            top: 90px;
-            left: 108px;
-            border-radius: 10%;
-        }
+            & .left-eye{           
+                left: 50px;
+            }
+            & .right-eye{           
+                right: 50px;
+            }
+            & .pupil{
+                width: 20px;
+                height: 20px;
+                background-color: blue;
+                position: absolute;
+                top: 5px;
+                left: 20px;
+            }
+        
+            & .noise {
+                background-color:darkolivegreen;
+                border-bottom: 5px;
+                border: black;
+                width: 30px;
+                height: 50px;
+                position: absolute;
+                top: 90px;
+                left: 108px;
+                border-radius: 10%;
+            }
 
-        #mouth {
-            background-color: red;
-            width: 170px;
-            height: 20px;
-            position: absolute;
-            top: 170px;
-            left: 40px;
-            border-radius: 80%;
-        }
+            & .mouth {
+                background-color: red;
+                width: 170px;
+                height: 20px;
+                position: absolute;
+                top: 170px;
+                left: 40px;
+                border-radius: 80%;
+            }
 
-        #ear-left {
-            background-color: burlywood;
-            width: 60px;
-            height: 60px;
-            position: absolute;
-            border-radius: 50%;
-            left: 30px;
-        }
+            & .ear {
+                background-color: burlywood;
+                width: 60px;
+                height: 60px;
+                position: absolute;
+                border-radius: 50%;              
+            }
 
-        #ear-rigth {
-            background-color: burlywood;
-            width: 60px;
-            height: 60px;
-            position: absolute;
-            border-radius: 50%;
-            right: 30px;
+            & .ear-left {
+                left: 30px;
+            }
+
+            & .ear-right {               
+                right: 30px;
+            }
         }
 
         /* SPACESHIP */
-
-        #spaceship {
+        .spaceship {
             width: 100px;
             height: 300px;
             background-color: white;
             left: 500px;
             top: 100px;
             position: absolute;
-        }
+       
 
-        #head {
-        width: 100px;
-        height: 200px;
-        background-color: rgb(255, 255, 255); 
-        position: absolute;
-        border-radius: 50%;
-        top: -90px
-        }
+            & .head {
+                width: 100px;
+                height: 200px;
+                background-color: rgb(255, 255, 255); 
+                position: absolute;
+                border-radius: 50%;
+                top: -90px
+            }
 
-        #wings {
-            background-color: white;
-            width: 100px;
-            height: 100px;
-            position: absolute;
-            bottom: 15px;
-            left: -100px;
-            border-bottom: 130px solid #fff;
-            border-left:  100px solid black;
-            border-right: 100px solid black;
-            border-radius: 2%;
-        }
+            & .wings {
+                background-color: white;
+                width: 100px;
+                height: 100px;
+                position: absolute;
+                bottom: 15px;
+                left: -100px;
+                border-bottom: 130px solid #fff;
+                border-left:  100px solid black;
+                border-right: 100px solid black;
+                border-radius: 2%;
+            }
 
-        #left-fire {
-            background-color: orange;
-            width: 20px;
-            height: 50px;
-            position: absolute;
-            border-radius: 50%;
-            border-top: 100px solid white;
-            bottom: -50px;
-            left: 10px;
-        }
-         #right-fire {
-            background-color: orange;
-            width: 20px;
-            height: 50px;
-            position: absolute;
-            border-radius: 50%;
-            border-top: 100px solid white;
-            bottom: -50px;
-            right: 10px;
-        }
+            & .left-fire {
+                background-color: orange;
+                width: 20px;
+                height: 50px;
+                position: absolute;
+                border-radius: 50%;
+                border-top: 100px solid white;
+                bottom: -50px;
+                left: 10px;
+            }
 
-        #left-windows {
-            width: 25px;
-            height: 15px;
-            position: absolute;
-            background-color: gray;
-            top: 50px;
-            left: 10px;
-            border: 1px solid black;
-            border-bottom-left-radius: 30%;
-            border-top-left-radius: 30%;
-        }
-        #center-windows {
-            width: 27px;
-            height: 15px;
-            position: absolute;
-            background-color: gray;
-            top: 50px;
-            left: 35px;
-            border: 1px solid black;
-        }
-        #right-windows {
-            width: 25px;
-            height: 15px;
-            position: absolute;
-            background-color: gray;
-            top: 50px;
-            right: 10px;
-            border: 1px solid black;
-            border-bottom-right-radius: 30%;
-            border-top-right-radius: 30%;
-        }
+            & .right-fire {
+                background-color: orange;
+                width: 20px;
+                height: 50px;
+                position: absolute;
+                border-radius: 50%;
+                border-top: 100px solid white;
+                bottom: -50px;
+                right: 10px;
+            }
 
-        #command-center {
-            position: absolute;
-            width: 60px;
-            height: 120px;
-            background-color: rgb(238, 228, 217);
-            border-radius: 10%;
-            top: 20px;
-            left: 18px;
-            border: 2px solid black;
+            & .windows {
+                position: absolute;
+                background-color: gray;
+                border: 1px solid black;    
+                height: 15px;            
+            }
+            & .left-windows {
+                width: 25px;                
+                top: 50px;
+                left: 10px;                
+                border-bottom-left-radius: 30%;
+                border-top-left-radius: 30%;
+            }
+            & .center-windows {
+                width: 27px;                               
+                top: 50px;
+                left: 35px;                
+            }
+            & .right-windows {
+                width: 25px;                           
+                top: 50px;
+                right: 10px;                
+                border-bottom-right-radius: 30%;
+                border-top-right-radius: 30%;
+            }
+
+            & .command-center {
+                position: absolute;
+                width: 60px;
+                height: 120px;
+                background-color: rgb(238, 228, 217);
+                border-radius: 10%;
+                top: 20px;
+                left: 18px;
+                border: 2px solid black;
+            }
         }
 
         /*house*/
-        #casa {
+        .house {
             position: absolute;
             width: 220px;
             height: 150px;
@@ -209,106 +193,91 @@
             border: 2px solid #8b4513;
             top:500px;
             left: 50px;
-        }
+       
 
-        #chimenea {
-            position: absolute;
-            width: 30px;
-            height: 50px;
-            background-color: #5a2f10;
-            top: -50px
-        }
+            & .fireplace {
+                position: absolute;
+                width: 30px;
+                height: 50px;
+                background-color: #5a2f10;
+                top: -50px
+            }
 
-        #techo {
-            position: absolute;
-            top: -70px;
-            left: -10px;
-            width: 0;
-            height: 0;
-            border-left: 120px solid transparent;
-            border-right: 120px solid transparent;
-            border-bottom: 70px solid #a52a2a; 
-        }
+            & .roof {
+                position: absolute;
+                top: -70px;
+                left: -10px;
+                width: 0;
+                height: 0;
+                border-left: 120px solid transparent;
+                border-right: 120px solid transparent;
+                border-bottom: 70px solid #a52a2a; 
+            }
 
-        #puerta {
-            position: absolute;
-            bottom: 0;
-            left: 40%;            
-            width: 40px;
-            height: 70px;
-            background-color: #8b4513;
-            border: 2px solid #5a2f10;
-            border-radius: 5px 5px 0 0;
-        }
+            & .door {
+                position: absolute;
+                bottom: 0;
+                left: 40%;            
+                width: 40px;
+                height: 70px;
+                background-color: #8b4513;
+                border: 2px solid #5a2f10;
+                border-radius: 5px 5px 0 0;
+            }
 
-        #ventana-izq {
-            position: absolute;
-            top: 30px;
-            width: 40px;
-            height: 40px;
-            left: 20px;
-            background-color: #e0f7fa;
-            border: 2px solid #000;
-            border-radius: 8px;
-        }
-        
-        #ventana-der {
-            position: absolute;
-            top: 30px;
-            width: 40px;
-            height: 40px;
-            right: 30px;
-            background-color: #e0f7fa;
-            border: 2px solid #000;
-            border-radius: 8px;
-        }
-
-        #ventana-izquierda {
-            left: 25px;
-        }
-
-        #ventana-derecha {
-            right: 25px;
+            & .window {
+                position: absolute;
+                top: 30px;
+                width: 40px;
+                height: 40px;               
+                background-color: #e0f7fa;
+                border: 2px solid #000;
+                border-radius: 8px;
+            }
+            & .window-izq {                
+                left: 20px;               
+            }            
+            & .window-der {              
+                right: 30px;             
+            }
         }
   </style>
 </head>
 <body>
-    <div id="frame">
-        <div id="face">  
-            <div id="ear-left"></div>     
-            <div id="ear-rigth"></div>   
-            <div id="left-eye">
-                <div id="left-pupil"></div>
+    <div class="frame">
+        <div class="face">  
+            <div class="ear ear-left"></div>     
+            <div class="ear ear-right"></div>   
+            <div class=" eye left-eye">
+                <div class="pupil"></div>
             </div>       
-            <div id="right-eye">
-                <div id="right-pupil"></div>
+            <div class="eye right-eye">
+                <div class="pupil"></div>
             </div>
-            <div id="noise">
+            <div class="noise">
             </div>
-            <div id="mouth">
+            <div class="mouth">
             </div>
         </div>
     </div>
-    <div id="spaceship">
-        <div id="head">
-            <div id="left-windows"></div>
-             <div id="center-windows"></div>
-            <div id="right-windows"></div>
+    <div class="spaceship">
+        <div class="head">
+            <div class="windows left-windows"></div>
+             <div class="windows center-windows"></div>
+            <div class="windows right-windows"></div>
         </div>
-        <div id="wings">
+        <div class="wings">
         </div>
-        <div id="left-fire"></div>
-        <div id="right-fire"></div>
-        <div id="command-center"></div>
+        <div class="left-fire"></div>
+        <div class="right-fire"></div>
+        <div class="command-center"></div>
     </div>
-    
-    
-    <div id="casa">
-        <div id="chimenea"></div>
-        <div id="techo"></div>
-        <div id="puerta"></div>
-        <div id="ventana-izq"></div>
-        <div id="ventana-der"></div>    
+    <div class="house">
+        <div class="fireplace"></div>
+        <div class="roof"></div>
+        <div class="door"></div>
+        <div class="window window-izq"></div>
+        <div class="window window-der"></div>    
   </div>    
 </body>
 </html>
