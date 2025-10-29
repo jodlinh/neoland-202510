@@ -4,14 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Draw</title>
-
     <style>
         body{
             background-color: black;            
         }
 
         /* FACE */
-
         #frame {
             background-color: white;
             width: 300px;
@@ -85,7 +83,6 @@
             top: 170px;
             left: 40px;
             border-radius: 80%;
-
         }
 
         #ear-left {
@@ -116,6 +113,7 @@
             top: 100px;
             position: absolute;
         }
+
         #head {
         width: 100px;
         height: 200px;
@@ -132,8 +130,6 @@
             position: absolute;
             bottom: 15px;
             left: -100px;
-
-
             border-bottom: 130px solid #fff;
             border-left:  100px solid black;
             border-right: 100px solid black;
@@ -171,7 +167,6 @@
             border: 1px solid black;
             border-bottom-left-radius: 30%;
             border-top-left-radius: 30%;
-
         }
         #center-windows {
             width: 27px;
@@ -181,7 +176,6 @@
             top: 50px;
             left: 35px;
             border: 1px solid black;
-
         }
         #right-windows {
             width: 25px;
@@ -193,24 +187,90 @@
             border: 1px solid black;
             border-bottom-right-radius: 30%;
             border-top-right-radius: 30%;
-
         }
+
         #command-center {
             position: absolute;
             width: 60px;
             height: 120px;
-            background-color: rgb(240, 218, 194);
+            background-color: rgb(238, 228, 217);
             border-radius: 10%;
             top: 20px;
             left: 18px;
             border: 2px solid black;
-
         }
 
+        /*house*/
+        #casa {
+            position: absolute;
+            width: 220px;
+            height: 150px;
+            background-color: #f5deb3; 
+            border: 2px solid #8b4513;
+            top:500px;
+            left: 50px;
+        }
 
+        #chimenea {
+            position: absolute;
+            width: 30px;
+            height: 50px;
+            background-color: #5a2f10;
+            top: -50px
+        }
+
+        #techo {
+            position: absolute;
+            top: -70px;
+            left: -10px;
+            width: 0;
+            height: 0;
+            border-left: 120px solid transparent;
+            border-right: 120px solid transparent;
+            border-bottom: 70px solid #a52a2a; 
+        }
+
+        #puerta {
+            position: absolute;
+            bottom: 0;
+            left: 40%;            
+            width: 40px;
+            height: 70px;
+            background-color: #8b4513;
+            border: 2px solid #5a2f10;
+            border-radius: 5px 5px 0 0;
+        }
+
+        #ventana-izq {
+            position: absolute;
+            top: 30px;
+            width: 40px;
+            height: 40px;
+            left: 20px;
+            background-color: #e0f7fa;
+            border: 2px solid #000;
+            border-radius: 8px;
+        }
         
-    </style>
+        #ventana-der {
+            position: absolute;
+            top: 30px;
+            width: 40px;
+            height: 40px;
+            right: 30px;
+            background-color: #e0f7fa;
+            border: 2px solid #000;
+            border-radius: 8px;
+        }
 
+        #ventana-izquierda {
+            left: 25px;
+        }
+
+        #ventana-derecha {
+            right: 25px;
+        }
+  </style>
 </head>
 <body>
     <div id="frame">
@@ -229,7 +289,6 @@
             </div>
         </div>
     </div>
-
     <div id="spaceship">
         <div id="head">
             <div id="left-windows"></div>
@@ -241,12 +300,15 @@
         <div id="left-fire"></div>
         <div id="right-fire"></div>
         <div id="command-center"></div>
-
-
-
     </div>
-
     
     
+    <div id="casa">
+        <div id="chimenea"></div>
+        <div id="techo"></div>
+        <div id="puerta"></div>
+        <div id="ventana-izq"></div>
+        <div id="ventana-der"></div>    
+  </div>    
 </body>
 </html>
