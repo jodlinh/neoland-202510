@@ -1,283 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <title>Draw</title>
     <style>
-        body{
-            background-color: black;            
-        }
+        .bg-black{              background-color: black;}
+        .bg-white{              background-color: white;}
+        .bg-darkolivegreen{     background-color: darkolivegreen;}
+        .bg-rgb-crema{          background-color: rgb(238,228,217);}
+        .bg-crema-oscura{       background-color: #f5deb3;}
+        .bg-blue{               background-color: blue;}
+        .bg-red{                background-color: red;}
+        .bg-orange{             background-color: orange;}
+        .bg-gray{               background-color: gray;}
+        .bg-linear-gradient{    background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);        }        
+        .bg-burlywood{          background-color: burlywood;}
+        .bg-marron-claro{      background-color: #8b4513;}       
+        .bg-marron-oscuro{      background-color: #5a2f10;}
+        .bg-semiwhite{          background-color: #e0f7fa;}
+        .w-0{                   width: 0;}
+        .w-20{                  width: 20px;}
+        .w-25{                  width: 25px;}
+        .w-27{                  width: 27px;}
+        .w-30{                  width: 30px;}
+        .w-40{                  width: 40px;}
+        .w-50{                  width: 50px;} 
+        .w-60{                  width: 60px;}
+        .w-100{                 width: 100px;}
+        .w-170{                 width: 170px;}
+        .w-220{                 width: 220px;}
+        .w-250{                 width: 250px;}
+        .w-300{                 width: 300px;}
+        .h-0{                   height: 0;}
+        .h-15{                  height: 15px;}
+        .h-20{                  height: 20px;}
+        .h-40{                  height: 40px;}
+        .h-50{                  height: 50px;}
+        .h-60{                  height: 60px;}
+        .h-70{                  height: 70px;}
+        .h-100{                 height: 100px;}
+        .h-120{                 height: 120px;}
+        .h-150{                 height: 150px;}
+        .h-200{                 height: 200px;}
+        .h-250{                 height: 250px;}
+        .h-300{                 height: 300px;}
+        .top-5{                 top: 5px;}
+        .top-20{                top:20px;}
+        .top-27 {               top:27px;}        
+        .top-30{                top:30px;}
+        .top-50{                top: 50px;}
+        .top-minus-50{          top:-50px;}
+        .top-minus-70{          top: -70px;}
+        .top-90{                top:90px;}
+        .top-minus-90{          top:-90px;}
+        .top-100{               top:100px;}
+        .top-170{               top:170px;}
+        .top-500{               top:500px;}
+        .left-10{               left:10px;}
+        .left-minus-10{         left: -10px;}
+        .left-18{               left:18px;}
+        .left-20{               left:20px;}
+        .left-25 {              left: 25px;}
+        .left-30 {              left: 30px;}
+        .left-35{               left: 35px;}
+        .left-40{               left:40px;}
+        .left-40-percent{       left:40%;}
+        .left-50{               left: 50px;}
+        .right-10{              right: 10px;}
+        .right-30{              right: 30px;}
+        .right-50{              right: 50px;}
+        .left-minus-100{        left: -100px;}
+        .left-108{              left:108px;}  
+        .left-500{              left: 500px;}  
+        .bottom-0{              bottom:0;}
+        .bottom-15{             bottom: 15px;} 
+        .bottom-minus-50{       bottom: -50px;}
+        .pos-absolute{          position: absolute;}
+        .border-solid{          border-style: solid;}
+        .border-black{          border-color: black;}
+        .border-white{          border-color: white;}
+        .border-top-color-white{border-top-color: white;}
+        .border-color-marron-claro{   border-color: #8b4513;  }
+        .border-color-marron-oscuro{   border-color: #5a2f10;  }       
+        .border-radius-2-percent{   border-radius: 2%;}
+        .border-radius-8-percent{   border-radius: 8%;}
+        .border-radius-10-percent{  border-radius: 10%;}
+        .border-radius-20-px{   border-radius: 20px;}
+        .border-radius-40-px{   border-radius: 40px;}
+        .border-radius-50-percent{  border-radius: 50%;}
+        .border-radius-60-percent{  border-radius: 60%;}
+        .border-radius-80-percent{  border-radius: 80%;}        
+        .border-bottom-5{       border-bottom: 5px;}
+        .border-bottom-70{      border-bottom-width: 70px;}
+        .border-buttom-130{     border-bottom: 130px;}
+        .border-left-100{       border-left: 100px;}
+        .border-left-120{       border-left: 120px;}
+        .border-right-100{      border-right: 100px;}
+        .border-right-120{      border-right: 120px;}
+        .border-top-100{        border-top: 100px; }
+        .border-width-1{        border-width: 1px;}
+        .border-width-2{        border-width: 2px;}
+        .border-top-left-radius-30-percent{         border-top-left-radius: 30%;}
+        .border-top-right-radius-30-percent{        border-top-right-radius: 30%;}
+        .border-bottom.left-radius-30-percent {     border-bottom-left-radius: 30%;}
+        .border-bottom-right-radius-30-percent {    border-bottom-right-radius: 30%;}
+        .border-left-color-black{   border-left-color: black;}
+        .border-right-color-black{  border-right-color: black;}
+        .border-bottom-color-white{ border-bottom-color: white;}
+        .border-bottom-color-red{   border-bottom-color: #a52a2a;}
 
-        /* FACE */
-        .frame {
-            background-color: white;
-            width: 300px;
-            height: 300px;           
-            top: 50px;
-            left: 50px;
-            position: absolute;
-            border-radius: 20px;
-            background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);       
+        .border-bottom-style-solid{ border-bottom-style: solid;}
+        .border-left-style-solid{   border-left-style: solid;}
+        .border-right-style-solid{  border-right-style: solid;}
+        .border-top-style-solid{    border-top-style: solid;}
 
-            & .face {
-                width: 250px;
-                height: 250px;
-                background-color:burlywood;
-                left: 25px;
-                top: 27px;
-                position: absolute;            
-                border-radius: 60%;
-            }
+        .border-left-transparent{     border-left-color: transparent;}
+        .border-right-transparent{    border-right-color: transparent;}
+        .border-top-transparent{      border-top-color: transparent;}
+        .border-bottom-transparent{   border-bottom-color: transparent;}
 
-            & .eye{
-                width: 50px;
-                height: 50px;
-                background-color:white;
-                position: absolute;
-                top: 30px;         
-            }
-
-            & .left-eye{           
-                left: 50px;
-            }
-            & .right-eye{           
-                right: 50px;
-            }
-            & .pupil{
-                width: 20px;
-                height: 20px;
-                background-color: blue;
-                position: absolute;
-                top: 5px;
-                left: 20px;
-            }
-        
-            & .noise {
-                background-color:darkolivegreen;
-                border-bottom: 5px;
-                border: black;
-                width: 30px;
-                height: 50px;
-                position: absolute;
-                top: 90px;
-                left: 108px;
-                border-radius: 10%;
-            }
-
-            & .mouth {
-                background-color: red;
-                width: 170px;
-                height: 20px;
-                position: absolute;
-                top: 170px;
-                left: 40px;
-                border-radius: 80%;
-            }
-
-            & .ear {
-                background-color: burlywood;
-                width: 60px;
-                height: 60px;
-                position: absolute;
-                border-radius: 50%;              
-            }
-
-            & .ear-left {
-                left: 30px;
-            }
-
-            & .ear-right {               
-                right: 30px;
-            }
-        }
-
-        /* SPACESHIP */
-        .spaceship {
-            width: 100px;
-            height: 300px;
-            background-color: white;
-            left: 500px;
-            top: 100px;
-            position: absolute;
-       
-
-            & .head {
-                width: 100px;
-                height: 200px;
-                background-color: rgb(255, 255, 255); 
-                position: absolute;
-                border-radius: 50%;
-                top: -90px
-            }
-
-            & .wings {
-                background-color: white;
-                width: 100px;
-                height: 100px;
-                position: absolute;
-                bottom: 15px;
-                left: -100px;
-                border-bottom: 130px solid #fff;
-                border-left:  100px solid black;
-                border-right: 100px solid black;
-                border-radius: 2%;
-            }
-
-            & .left-fire {
-                background-color: orange;
-                width: 20px;
-                height: 50px;
-                position: absolute;
-                border-radius: 50%;
-                border-top: 100px solid white;
-                bottom: -50px;
-                left: 10px;
-            }
-
-            & .right-fire {
-                background-color: orange;
-                width: 20px;
-                height: 50px;
-                position: absolute;
-                border-radius: 50%;
-                border-top: 100px solid white;
-                bottom: -50px;
-                right: 10px;
-            }
-
-            & .windows {
-                position: absolute;
-                background-color: gray;
-                border: 1px solid black;    
-                height: 15px;            
-            }
-            & .left-windows {
-                width: 25px;                
-                top: 50px;
-                left: 10px;                
-                border-bottom-left-radius: 30%;
-                border-top-left-radius: 30%;
-            }
-            & .center-windows {
-                width: 27px;                               
-                top: 50px;
-                left: 35px;                
-            }
-            & .right-windows {
-                width: 25px;                           
-                top: 50px;
-                right: 10px;                
-                border-bottom-right-radius: 30%;
-                border-top-right-radius: 30%;
-            }
-
-            & .command-center {
-                position: absolute;
-                width: 60px;
-                height: 120px;
-                background-color: rgb(238, 228, 217);
-                border-radius: 10%;
-                top: 20px;
-                left: 18px;
-                border: 2px solid black;
-            }
-        }
-
-        /*house*/
-        .house {
-            position: absolute;
-            width: 220px;
-            height: 150px;
-            background-color: #f5deb3; 
-            border: 2px solid #8b4513;
-            top:500px;
-            left: 50px;
-       
-
-            & .fireplace {
-                position: absolute;
-                width: 30px;
-                height: 50px;
-                background-color: #5a2f10;
-                top: -50px
-            }
-
-            & .roof {
-                position: absolute;
-                top: -70px;
-                left: -10px;
-                width: 0;
-                height: 0;
-                border-left: 120px solid transparent;
-                border-right: 120px solid transparent;
-                border-bottom: 70px solid #a52a2a; 
-            }
-
-            & .door {
-                position: absolute;
-                bottom: 0;
-                left: 40%;            
-                width: 40px;
-                height: 70px;
-                background-color: #8b4513;
-                border: 2px solid #5a2f10;
-                border-radius: 5px 5px 0 0;
-            }
-
-            & .window {
-                position: absolute;
-                top: 30px;
-                width: 40px;
-                height: 40px;               
-                background-color: #e0f7fa;
-                border: 2px solid #000;
-                border-radius: 8px;
-            }
-            & .window-izq {                
-                left: 20px;               
-            }            
-            & .window-der {              
-                right: 30px;             
-            }
-        }
-  </style>
+        .border-top-left-radius-5{  border-top-left-radius: 5px;}
+        .border-top-right-radius-5{  border-top-right-radius: 5px;}
+        .border-bottom-right-radius-0{  border-bottom-right-radius: 0px;}
+        .border-bottom-left-radius-0{  border-bottom-left-radius: 0px;} 
+     
+    </style>
 </head>
-<body>
-    <div class="frame">
-        <div class="face">  
-            <div class="ear ear-left"></div>     
-            <div class="ear ear-right"></div>   
-            <div class=" eye left-eye">
-                <div class="pupil"></div>
-            </div>       
-            <div class="eye right-eye">
-                <div class="pupil"></div>
+
+<body class="bg-black">
+    <div class="w-300 h-300 top-50 left-50 pos-absolute border-radius-20-px bg-linear-gradient">
+        <div class="w-250 h-250 bg-burlywood left-25 top-27 pos-absolute border-radius-60-percent">
+            <div class="w-60 h-60 pos-absolute border-radius-50-percent bg-burlywood left-30"></div>
+            <div class="w-60 h-60 pos-absolute border-radius-50-percent bg-burlywood right-30"></div>
+            <div class="w-50 h-50 bg-white pos-absolute top-30 right-50">
+                <div class="w-20 h-20 bg-blue pos-absolute top-5 left-20"></div>
             </div>
-            <div class="noise">
+            <div class="w-50 h-50 bg-white pos-absolute top-30 left-50">
+                <div class="w-20 h-20 bg-blue pos-absolute top-5 left-20"></div>
             </div>
-            <div class="mouth">
+            <div class="bg-darkolivegreen border-bottom-5 border-black w-30 h-50 pos-absolute top-90 left-108 border-radius-10-percent">
+            </div>
+            <div class="bg-red w-170 h-20 pos-absolute top-170 left-40 border-radius-80-percent">
             </div>
         </div>
     </div>
-    <div class="spaceship">
-        <div class="head">
-            <div class="windows left-windows"></div>
-             <div class="windows center-windows"></div>
-            <div class="windows right-windows"></div>
+
+    <div class="w-100 h-300 bg-white left-500 top-100 pos-absolute">      
+        <div class="w-100 h-200 bg-white pos-absolute border-radius-50-percent top-minus-90">       
+            <div class="pos-absolute bg-gray border-width-1 border-solid border-black h-15 w-25 top-50 left-10 border-bottom-left-radius-30-percent border-top-left-radius-30-percent"></div>            
+            <div class="pos-absolute bg-gray border-width-1 border-solid border-black h-15 w-27 top-50 left-35"></div>
+            <div class="pos-absolute bg-gray border-width-1 border-solid border-black h-15 w-25 top-50 right-10 border-bottom-right-radius-30-percent border-top-right-radius-30-percent"></div>
         </div>
-        <div class="wings">
-        </div>
-        <div class="left-fire"></div>
-        <div class="right-fire"></div>
-        <div class="command-center"></div>
+        <div class="bg-orange w-20 h-50 pos-absolute border-radius-50-percent border-top-100 border-top-style-solid border-top-color-white bottom-minus-50 left-10"></div>
+        <div class="bg-orange w-20 h-50 pos-absolute border-radius-50-percent border-top-100 border-top-style-solid border-top-color-white bottom-minus-50  right-10"></div>
+        <div class="bg-white w-100 h-100 pos-absolute bottom-15 left-minus-100 border-buttom-130 border-bottom-color-white border-left-100 border-left-color-black border-right-100 border-right-color-black border-radius-2-percent border-bottom-style-solid border-right-style-solid border-left-style-solid">        </div>
+        <div class="pos-absolute w-60 h-120 bg-rgb-crema border-radius-10-percent top-20 left-18 border-width-2 border-solid border-black"></div>
     </div>
-    <div class="house">
-        <div class="fireplace"></div>
-        <div class="roof"></div>
-        <div class="door"></div>
-        <div class="window window-izq"></div>
-        <div class="window window-der"></div>    
-  </div>    
+
+
+    <div class="pos-absolute w-220 h-150 bg-crema-oscura border-width-2 border-solid border-color-marron-claro top-500 left-50">
+        <div class="pos-absolute w-30 h-50 bg-marron-oscuro top-minus-50"></div>
+        <div class="pos-absolute top-minus-70 left-minus-10 w-0 h-0  border-bottom-70 border-bottom-style-solid border-bottom-color-red border-left-120 border-left-style-solid border-left-transparent  border-right-120 border-right-style-solid border-right-transparent"></div>
+        <div class="pos-absolute bottom-0 left-40-percent w-40 h-70 bg-marron-claro border-color-marron-oscuro border-solid border-top-left-radius-5 border-top-right-radius-5 border-bottom-right-radius-0 border-bottom-left-radius-0"></div>
+        <div class="pos-absolute top-30 w-40 h-40 bg-semiwhite border-width-2 border-solid border-black border-radius-8-percent left-20"></div>
+        <div class="pos-absolute top-30 w-40 h-40 bg-semiwhite border-width-2 border-solid border-black border-radius-8-percent right-30"></div>
+    </div>
 </body>
+
 </html>
