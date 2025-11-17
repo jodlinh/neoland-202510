@@ -66,9 +66,6 @@ collection.add('Pepito')
 console.log(collection)
 // {0: 'Peter', 2: 'James', 3: 'Wendy', 4: 'Pepito', 5: 'Wendy', 6: 'Pepito', count: 7 }
 
-
-//TODO implement update method
-
 collection.update('Pepito', 'Jiminy')
 console.log(collection)
 // {0: 'Peter', 2: 'James', 3: 'Wendy', 4: 'Jiminy', 5: 'Wendy', 6: 'Jiminy', count: 7 }
