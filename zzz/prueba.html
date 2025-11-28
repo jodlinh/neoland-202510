@@ -4,13 +4,13 @@
 <head>
     <meta charset='UTF-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-    <title>Pacman Game</title>
+    <title>Arcade Game</title>
 </head>
 
 <body style="background-color: #000; margin: 0; overflow: hidden;">
     <script>
         let pacmanX = 50, pacmanY = 150, pacmanWidth = 100, pacmanHeight = 100
-        let ghostX = 800, ghostY = 150, ghostWidth = 50, ghostHeight = 55, ghostLive = 5
+        let ghostX = 800, ghostY = 150, ghostWidth = 50, ghostHeight = 55, ghostLife = 5
         const step = 10
         let loser = false
 
@@ -28,33 +28,34 @@
         document.body.appendChild(gameBoard)
 
 
-        //Panel live
+        //Panel life
         const panel = document.createElement('div')
         panel.style.width = '100%'
         panel.style.height = '60px'
         panel.style.top = '0'
         panel.style.left = '0'
         panel.style.position = 'absolute'
+
         gameBoard.appendChild(panel)
 
-        // Pacman lives 
-        const lives = document.createElement('div')
-        lives.innerText = 'Lives: ' + ghostLive
-        lives.style.color = '#fff'
-        lives.style.backgroundColor = '#8b0000'
-        lives.style.width = '40%'
-        lives.style.height = '100%'
-        lives.style.position = 'absolute'
-        lives.style.left = '10px'
-        lives.style.top = '0'
-        lives.style.display = 'flex'
-        lives.style.alignItems = 'center'
-        lives.style.paddingLeft = '10px'
-        lives.style.fontFamily = 'monospace'
-        lives.style.fontSize = '20px'
-        lives.style.border = '2px solid #ff0000'
-        lives.style.boxShadow = '0 0 8px #ff0000'
-        panel.appendChild(lives)
+        // Ghost Lifes 
+        const lifes = document.createElement('div')
+        lifes.innerText = 'Lifes: ' + ghostLife
+        lifes.style.color = '#fff'
+        lifes.style.backgroundColor = '#8b0000'
+        lifes.style.width = '40%'
+        lifes.style.height = '100%'
+        lifes.style.position = 'absolute'
+        lifes.style.left = '10px'
+        lifes.style.top = '0'
+        lifes.style.display = 'flex'
+        lifes.style.alignItems = 'center'
+        lifes.style.paddingLeft = '10px'
+        lifes.style.fontFamily = 'monospace'
+        lifes.style.fontSize = '20px'
+        lifes.style.border = '2px solid #ff0000'
+        lifes.style.boxShadow = '0 0 8px #ff0000'
+        panel.appendChild(lifes)
 
 
 
@@ -123,116 +124,70 @@
         pacman.appendChild(pacmanHeadBottom)
 
         //GHOST
-        function Ghost(x, y, w, h,) {
-            this.x = x
-            this.y = y
-            this.w = w
-            this.h = h
+        const ghost = document.createElement('div')
+        ghost.style.width = ghostWidth + 'px'
+        ghost.style.height = ghostHeight + 'px'
+        ghost.style.backgroundColor = 'red'
+        ghost.style.position = 'absolute'
+        ghost.style.top = ghostY + 'px'
+        ghost.style.left = ghostX + 'px'
+        ghost.style.padding = 0
+        ghost.style.margin = 0
+        ghost.style.borderTopLeftRadius = '50%'
+        ghost.style.borderTopRightRadius = '60%'
+        ghost.style.borderBottomRightRadius = '5%'
+        ghost.style.borderBottomLeftRadius = '5%'
+        gameBoard.appendChild(ghost)
 
-            this.container = document.createElement('div')
-            this.container.style.width = w + 'px'
-            this.container.style.height = h + 'px'
-            this.container.style.backgroundColor = 'red'
-            this.container.style.position = 'absolute'
-            this.container.style.top = y + 'px'
-            this.container.style.left = x + 'px'
-            this.container.style.padding = 0
-            this.container.style.margin = 0
-            this.container.style.borderTopLeftRadius = '50%'
-            this.container.style.borderTopRightRadius = '60%'
-            this.container.style.borderBottomRightRadius = '5%'
-            this.container.style.borderBottomLeftRadius = '5%'
+        //GHOST EYE
+        var ghostEye = function (pos) {
+            const ghostEye = document.createElement('div')
+            ghostEye.style.position = 'absolute'
+            ghostEye.style.top = '10px'
+            ghostEye.style.left = pos + 'px'
+            ghostEye.style.width = '15px'
+            ghostEye.style.height = '19px'
+            ghostEye.style.backgroundColor = 'black'
+            ghostEye.style.borderRadius = '50%'
 
+            const pupil = document.createElement('div')
+            pupil.style.position = 'absolute'
+            pupil.style.top = '5px'
+            pupil.style.left = '0px'
+            pupil.style.width = '9px'
+            pupil.style.height = '10px'
+            pupil.style.backgroundColor = 'white'
+            pupil.style.borderRadius = '50%'
+            ghostEye.appendChild(pupil)
 
-            //GHOST EYE
-            var ghostEye = function (pos) {
-                this.ghostEye = document.createElement('div')
-                this.ghostEye.style.position = 'absolute'
-                this.ghostEye.style.top = '10px'
-                this.ghostEye.style.left = pos + 'px'
-                this.ghostEye.style.width = '15px'
-                this.ghostEye.style.height = '19px'
-                this.ghostEye.style.backgroundColor = 'black'
-                this.ghostEye.style.borderRadius = '50%'
-
-                this.pupil = document.createElement('div')
-                this.pupil.style.position = 'absolute'
-                this.pupil.style.top = '5px'
-                this.pupil.style.left = '0px'
-                this.pupil.style.width = '9px'
-                this.pupil.style.height = '10px'
-                this.pupil.style.backgroundColor = 'white'
-                this.pupil.style.borderRadius = '50%'
-                this.ghostEye.appendChild(this.pupil)
-
-                return this.ghostEye
-            }
-            var leftEye = ghostEye(4)
-            var rightEye = ghostEye(25)
-            this.container.appendChild(leftEye)
-            this.container.appendChild(rightEye)
-
-
-            //GHOST FOOT 
-            var ghostFoot = function (pos) {
-                this.foot = document.createElement('div')
-                this.foot.style.position = 'absolute'
-                this.foot.style.bottom = '0'
-                this.foot.style.left = pos + 'px'
-                this.foot.style.width = '9px'
-                this.foot.style.height = '7px'
-                this.foot.style.backgroundColor = 'black'
-                this.foot.style.borderTopLeftRadius = '50%'
-                this.foot.style.borderTopRightRadius = '50%'
-                return this.foot
-            }
-            var foot1 = ghostFoot(7)
-            var foot2 = ghostFoot(21)
-            var foot3 = ghostFoot(35)
-
-            this.container.appendChild(foot1)
-            this.container.appendChild(foot2)
-            this.container.appendChild(foot3)
+            return ghostEye
         }
+        var leftEye = new ghostEye(4)
+        var rightEye = new ghostEye(25)
+        ghost.appendChild(leftEye)
+        ghost.appendChild(rightEye)
 
-        Ghost.prototype.moveRight = function (step) {
-            this.x += step
-            this.container.style.left = this.x + 'px'
+        //GHOST FOOT 
+        var ghostFoot = function (pos) {
+            const foot = document.createElement('div')
+            foot.style.position = 'absolute'
+            foot.style.bottom = '0'
+            foot.style.left = pos + 'px'
+            foot.style.width = '9px'
+            foot.style.height = '7px'
+            foot.style.backgroundColor = 'black'
+            foot.style.borderTopLeftRadius = '50%'
+            foot.style.borderTopRightRadius = '50%'
+            return foot
         }
-        Ghost.prototype.moveLeft = function (step) {
-            this.x -= step
-            this.container.style.left = this.x + 'px'
-        }
-        Ghost.prototype.moveTop = function (step) {
-            this.y -= step
-            this.container.style.top = this.y + 'px'
-        }
-        Ghost.prototype.moveDown = function (step) {
-            this.y += step
-            this.container.style.top = this.y + 'px'
-        }
+        var foot1 = new ghostFoot(7)
+        var foot2 = new ghostFoot(21)
+        var foot3 = new ghostFoot(35)
 
-        Ghost.prototype.verifyPos = function () {
-            this.ghostXMax = this.x + this.w
-            this.ghostYMax = this.y + this.h
+        ghost.appendChild(foot1)
+        ghost.appendChild(foot2)
+        ghost.appendChild(foot3)
 
-            //Screen limits
-            if (this.ghostXMax >= 1024)
-                this.x = 963
-            if (this.x <= 4)
-                this.x = 4
-            if (this.y <= 70)
-                this.y = 70
-            if (this.y >= 702)
-                this.y = 702
-        }
-
-
-        const ghost1 = new Ghost(800, 300, ghostWidth, ghostHeight)
-        const ghost2 = new Ghost(800, 500, ghostWidth, ghostHeight)
-
-        gameBoard.appendChild(ghost1.container)
-        gameBoard.appendChild(ghost2.container)
 
         //game over msj
         const gameOver = document.createElement('div')
@@ -246,25 +201,33 @@
         gameOver.style.fontSize = '100px'
         gameOver.style.position = 'absolute'
         gameOver.style.textShadow = '0 0 10px blue'
-        gameOver.style.zIndex = 1000
 
         // CONTROLS
         document.addEventListener('keydown', function (event) {
             if (loser == true) return false
             //ghost 
             //Movements        
-            if (event.key === 'ArrowUp') ghost1.moveTop(step)
-            else if (event.key === 'ArrowDown') ghost1.moveDown(step)
-            else if (event.key === 'ArrowLeft') ghost1.moveLeft(step)
-            else if (event.key === 'ArrowRight') ghost1.moveRight(step)
-            ghost1.verifyPos()
+            if (event.key === 'ArrowUp') ghostY -= step
+            else if (event.key === 'ArrowDown') ghostY += step
+            else if (event.key === 'ArrowLeft') ghostX -= step
+            else if (event.key === 'ArrowRight') ghostX += step
 
-            if (event.key === 'o') ghost2.moveTop(step)
-            else if (event.key === 'l') ghost2.moveDown(step)
-            else if (event.key === 'k') ghost2.moveLeft(step)
-            else if (event.key === 'ñ') ghost2.moveRight(step)
-            ghost2.verifyPos()
+            let ghostXMax = ghostX + ghostWidth
+            let ghostYMax = ghostY + ghostHeight
 
+            //Screen limits
+            if (ghostXMax >= 1024)
+                ghostX = 963
+            if (ghostX <= 4)
+                ghostX = 4
+            if (ghostY <= 70)
+                ghostY = 70
+            if (ghostY >= 714)
+                ghostY = 714
+
+            //Make movement
+            ghost.style.top = ghostY + 'px'
+            ghost.style.left = ghostX + 'px'
 
 
             //pacman
@@ -311,39 +274,35 @@
             pacman.style.top = pacmanY + 'px'
             pacman.style.left = pacmanX + 'px'
 
-            /*
-                      console.log('- pacmanMax:X' + pacmanXMax + ',Y' + pacmanYMax + ' - ghostMax:X' + ghostXMax + ',Y' + ghostYMax +
-                            '\n Paman:X' + pacmanX + ',Y' + pacmanY + ' - ghost:X' + ghostX + ',Y' + ghostY)
-            */
 
-            if (ghostX >= pacmanX && ghostX <= pacmanXMax && ghostY >= pacmanY && ghostY <= pacmanYMax)
-                loser = true
-            if (ghostXMax >= pacmanX && ghostXMax <= pacmanXMax && ghostYMax >= pacmanY && ghostYMax <= pacmanYMax)
-                loser = true
-            if (ghostXMax >= pacmanX && ghostXMax <= pacmanXMax && ghostY >= pacmanY && ghostY <= pacmanYMax)
-                loser = true
-            if (ghostX >= pacmanX && ghostX <= pacmanXMax && ghostYMax >= pacmanY && ghostYMax <= pacmanYMax)
-                loser = true
+            console.log('- pacmanMax:' + pacmanXMax + ',' + pacmanYMax + ' - ghostMax:' + ghostXMax + ',' + ghostYMax +
+                '\n Paman:' + pacmanX + ',' + pacmanY + ' - ghost:' + ghostX + ',' + ghostY)
 
+
+            if (ghostX >= pacmanX && ghostX <= pacmanXMax && ghostY >= pacmanY && ghostY <= pacmanYMax) {
+                loser = true
+            }
+            if (ghostXMax >= pacmanX && ghostXMax <= pacmanXMax && ghostYMax >= pacmanY && ghostYMax <= pacmanYMax) {
+                loser = true
+            }
             if (loser === true) {
-                ghostLive--
+                ghostLife -= 1
+
 
                 pacmanX = 50
                 pacmanY = 150
                 ghostX = 800
                 ghostY = 150
 
-                lives.innerText = 'Lives: ' + ghostLive
-                pacmanHeadTop.style.background = 'gray'
-                pacmanHeadBottom.style.background = 'gray'
+                lifes.innerText = 'Life: ' + ghostLife
+                ghost.style.backgroundColor = 'gray'
 
-                if (ghostLive === 0) {
+                if (ghostLife === 0) {
                     gameBoard.appendChild(gameOver)
                     return false
                 } else {
                     setTimeout(() => {
-                        pacmanHeadTop.style.background = 'yellow'
-                        pacmanHeadBottom.style.background = 'yellow'
+                        ghost.style.backgroundColor = 'red'
                         pacman.style.top = pacmanY + 'px'
                         pacman.style.left = pacmanX + 'px'
 

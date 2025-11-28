@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="background-color: black;">
+    <script>
+        function Owner(id, name, surname, address, phone, email) {
+            this.id = id
+            this.name = name
+            this.surname = surname
+            this.address = address
+            this.phone = phone
+            this.email = email
+        }
+
+        function Pet(ownerId, id, name, yearOfBirth, species, gender, race, color) {
+            this.ownerId = ownerId
+            this.id = id
+            this.name = name
+            this.yearOfBirth = yearOfBirth
+            this.species = species
+            this.gender = gender
+            this.race = race
+            this.color = []
+            this.vaccines = []
+        }
+
+        function Vaccine(id, name, description) {
+            this.id = id
+            this.name = name
+            this.description = description
+        }
+
+
+
+        Pet.prototype.saveVaccine = function (vaccineId, expirationDate) {
+            this.vaccines.push({ vaccineId: vaccineId, expirationDate: expirationDate })
+
+        }
+
+        function Database() {
+            this.vaccines = []
+            this.owners = []
+            this.pets = []
+        }
+
+
+        Database.prototype.findOwnerById = function (ownerId) {
+            for (let i = 0; i < this.owners.length; i++) {
+                const owner = this.owners[i]
+                if (owner.id === ownerId)
+                    return owner
+
+            }
+            return null
+        }
+
+        Database.prototype.findPetsByOwnerId = function (ownerId) {
+            const foundPets = []
+            for (let i = 0; i < this.pets.length; i++) {
+                const pet = this.pets[i]
+
+                if (pet.ownerId === ownerId)
+                    foundPets.push(pet)
+
+            }
+
+            return foundPets
+
+        }
+
+        //TODO implement find-pet-by-id
+
+        Database.prototype.findPetById = function (petId) {
+            for (let i = 0; i < this.pets.length; i++) {
+                const pet = this.pets[i]
+                if (pet.id === petId)
+                    return pet
+            }
+            return null
+        }
+
+        //usage
+
+        const database = new Database()
+
+
+        database.vaccines.push(new Vaccine('xyv-345', 'rabitis', 'rabitis agudis 200mg'))
+        database.vaccines.push(new Vaccine('uvw-123', 'mosquitus', 'mosquitus damage 100mg'))
+        database.vaccines.push(new Vaccine('zsa-456', 'parvovirus', 'par vo virus 300mg'))
+
+        database.owners.push(new Owner('123456789T', 'Laura', 'Chico', 'Manhattan, 123', '+1(678)123456', 'laurachico@chico.com'))
+        database.owners.push(new Owner('234567890W', 'Juan', 'Indiferente', 'New Jersey, 345', '+1(783)784311', 'juanindif@juan.com'))
+
+        database.pets.push(new Pet('123456789T', 'abc-123', 'Tobias', 2023, 'canine', 'masculine', 'mix', ['black']))
+        database.pets.push(new Pet('123456789T', 'def-456', 'Pelayo', 2024, 'canine', 'masculine', 'mix', ['brown', 'white']))
+        database.pets.push(new Pet('234567890W', 'ghi-789', 'Dali', 2022, 'canine', 'masculine', 'american bully', ['gray', 'white']))
+        database.pets.push(new Pet('234567890W', 'jkl-012', 'Floki', 2017, 'feline', 'masculine', 'bombay', ['black']))
+        database.pets.push(new Pet('234567890W', 'mno-345', 'Olga', 2017, 'feline', 'femenine', 'siamese', ['gray', 'white', 'brown']))
+
+
+        database.pets[0].saveVaccine('zsa-456', '2026-01-01')
+        database.pets[0].saveVaccine('uvw-123', '2026-02-02')
+        database.pets[0].saveVaccine('xyv-345', '2026-11-01')
+
+        database.pets[1].saveVaccine('zsa-456', '2026-03-03')
+        database.pets[1].saveVaccine('uvw-123', '2026-04-04')
+        database.pets[1].saveVaccine('xyv-345', '2026-01-01')
+
+
+
+
+
+    </script>
+</body>
+
+</html>

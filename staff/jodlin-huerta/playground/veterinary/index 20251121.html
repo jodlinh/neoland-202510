@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="background-color: black;">
+    <script>
+        function User(id, name, surname, username, password, role) {
+            this.id = id
+            this.name = name
+            this.surname = surname
+            this.username = username
+            this.password = password
+            this.role = role
+        }
+
+
+        function Owner(id, name, surname, address, phone, email) {
+            this.id = id
+            this.name = name
+            this.surname = surname
+            this.address = address
+            this.phone = phone
+            this.email = email
+        }
+
+        function Pet(ownerId, id, name, yearOfBirth, species, gender, race, color) {
+            this.ownerId = ownerId
+            this.id = id
+            this.name = name
+            this.yearOfBirth = yearOfBirth
+            this.species = species
+            this.gender = gender
+            this.race = race
+            this.color = []
+            this.vaccines = []
+        }
+
+        function Vaccine(id, name, description) {
+            this.id = id
+            this.name = name
+            this.description = description
+        }
+
+
+        function Database() {
+            this.users = []
+            this.vaccines = []
+            this.owners = []
+            this.pets = []
+        }
+
+
+        function Logic() {
+
+        }
+
+
+        Database.prototype.findOwnerById = function (ownerId) {
+            for (let i = 0; i < this.owners.length; i++) {
+                const owner = this.owners[i]
+                if (owner.id === ownerId)
+                    return owner
+
+            }
+            return null
+        }
+
+        Database.prototype.findPetsByOwnerId = function (ownerId) {
+            const foundPets = []
+            for (let i = 0; i < this.pets.length; i++) {
+                const pet = this.pets[i]
+
+                if (pet.ownerId === ownerId)
+                    foundPets.push(pet)
+
+            }
+
+            return foundPets
+
+        }
+
+
+        Database.prototype.findPetById = function (petId) {
+            for (let i = 0; i < this.pets.length; i++) {
+                const pet = this.pets[i]
+                if (pet.id === petId)
+                    return pet
+            }
+            return null
+        }
+
+        Database.prototype.addVaccines = function (vaccine) {
+            this.vaccines.push(vaccine)
+
+        }
+
+
+        Pet.prototype.saveVaccine = function (vaccineId, expirationDate) {
+            this.vaccines.push({ vaccineId: vaccineId, expirationDate: expirationDate })
+
+        }
+
+        Database.prototype.addPet = function (pet) {
+            this.pets.push(pet)
+
+        }
+
+        Database.prototype.addOwner = function (owner) {
+            this.owners.push(owner)
+
+        }
+
+        Database.prototype.addUser = function (user) {
+            this.users.push(user)
+        }
+
+        Database.prototype.findUserByUsername = function (username) {
+            for (let i = 0; i < this.users.length; i++) {
+                const user = this.users[i]
+                if (user.username === username)
+                    return user
+            }
+            return null
+        }
+
+
+
+
+
+
+
+
+        Logic.prototype.registerUser = function (name, surname, username, password, passwordRepeat) {
+            if (typeof name !== 'string') return 'Invalid name type'
+            if (name.length < 1) return 'invalid name length'
+
+            if (typeof surname !== 'string') return 'Invalid surname type'
+            if (surname.length < 2) return 'invalid surname length'
+
+            if (typeof username !== 'string') return 'Invalid username type'
+            if (username.length < 4) return 'invalid username length'
+
+            if (typeof password !== 'string') return 'Invalid password type'
+            if (password.length < 8) return 'invalid password length'
+
+            if (typeof passwordRepeat !== 'string') return 'Invalid passwordRepeat type'
+            if (passwordRepeat.length < 8) return 'invalid passwordRepeat length'
+
+            if (password !== passwordRepeat) return 'password do not match'
+
+            let user = database.findUserByUsername(username)
+
+            if (user !== null) return 'user already exists'
+
+            user = new User('user-?', name, surname, username, password, 'none')
+            database.addUser(user)
+        }
+
+        Logic.prototype.registerOwner = function (id, name, surname, address, phone, email) {
+            //TODO implement me
+            if (typeof id !== 'string') return 'Invalid id type'
+            if (id.length < 10) return 'invalid id length'
+
+
+            if (typeof name !== 'string') return 'Invalid name type'
+            if (name.length < 1) return 'invalid name length'
+
+            if (typeof surname !== 'string') return 'Invalid surname type'
+            if (surname.length < 1) return 'invalid surname length'
+
+            if (typeof address !== 'string') return 'Invalid address type'
+            if (address.length < 10) return 'invalid address length'
+
+            if (typeof phone !== 'string') return 'Invalid phone type'
+            if (phone.length < 6) return 'invalid phone length'
+
+            if (typeof email !== 'string') return 'Invalid email type'
+            if (email.length < 10) return 'invalid email length'
+
+            let owner = database.findOwnerById(id)
+            if (owner !== null) return 'Owner already exists'
+
+            owner = new Owner(id, name, surname, address, phone, email)
+            database.addOwner(owner)
+
+        }
+
+
+        //usage
+
+        const database = new Database()
+
+        const logic = new Logic
+
+        /*
+                database.addUser(new User('user-1', 'Peter', 'Pan', 'peterpan', '123123123', 'auxiliar'))
+                database.addUser(new User('user-2', 'Wendy', 'Darlin', 'wendydarlin', '123123123', 'veterinary'))
+        */
+
+        /*
+        
+                database.addVaccines(new Vaccine('xyv-345', 'rabitis', 'rabitis agudis 200mg'))
+                database.addVaccines(new Vaccine('uvw-123', 'mosquitus', 'mosquitus damage 100mg'))
+                database.addVaccines(new Vaccine('zsa-456', 'parvovirus', 'par vo virus 300mg'))
+        
+                database.addOwner(new Owner('123456789T', 'Laura', 'Chico', 'Manhattan, 123', '+1(678)123456', 'laurachico@chico.com'))
+                database.addOwner(new Owner('234567890W', 'Juan', 'Indiferente', 'New Jersey, 345', '+1(783)784311', 'juanindif@juan.com'))
+        
+                database.addPet(new Pet('123456789T', 'abc-123', 'Tobias', 2023, 'canine', 'masculine', 'mix', ['black']))
+                database.addPet(new Pet('123456789T', 'def-456', 'Pelayo', 2024, 'canine', 'masculine', 'mix', ['brown', 'white']))
+                database.addPet(new Pet('234567890W', 'ghi-789', 'Dali', 2022, 'canine', 'masculine', 'american bully', ['gray', 'white']))
+                database.addPet(new Pet('234567890W', 'jkl-012', 'Floki', 2017, 'feline', 'masculine', 'bombay', ['black']))
+                database.addPet(new Pet('234567890W', 'mno-345', 'Olga', 2017, 'feline', 'femenine', 'siamese', ['gray', 'white', 'brown']))
+        
+        
+                database.findPetById('abc-123').saveVaccine('zsa-456', '2026-01-01')
+                database.findPetById('abc-123').saveVaccine('uvw-123', '2026-02-02')
+                database.findPetById('abc-123').saveVaccine('xyv-345', '2026-11-01')
+        
+                database.findPetById('def-456').saveVaccine('zsa-456', '2026-03-03')
+                database.findPetById('def-456').saveVaccine('uvw-123', '2026-04-04')
+                database.findPetById('def-456').saveVaccine('xyv-345', '2026-01-01')
+        
+               
+            //    database.pets[0].saveVaccine('zsa-456', '2026-01-01')
+            //    database.pets[0].saveVaccine('uvw-123', '2026-02-02')
+            //    database.pets[0].saveVaccine('xyv-345', '2026-11-01')
+        
+            //    database.pets[1].saveVaccine('zsa-456', '2026-03-03')
+            //    database.pets[1].saveVaccine('uvw-123', '2026-04-04')
+            //    database.pets[1].saveVaccine('xyv-345', '2026-01-01')
+               
+        
+        */
+
+
+    </script>
+</body>
+
+</html>

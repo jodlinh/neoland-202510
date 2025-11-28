@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collection</title>
+</head>
+
+<body style="background-color: black;">
+    <script>
+        function Collection() {
+            this.count = 0
+        }
+
+        Collection.prototype.add = function (item) {
+            this[this.count] = item
+            this.count++
+        }
+
+        Collection.prototype.remove = function (item) {
+            for (var i = 0; i < this.count; i++)
+                if (this[i] === item)
+                    delete this[i]
+        }
+
+        Collection.prototype.removeFirst = function (item) {
+            for (var i = 0; i < this.count; i++)
+                if (this[i] === item) {
+                    delete this[i]
+
+                    return
+                }
+        }
+
+        Collection.prototype.update = function (target, replacement) {
+            for (var i = 0; i < this.count; i++)
+                if (this[i] === target)
+                    this[i] = replacement
+        }
+
+        Collection.prototype.updateFirst = function (target, replacement) {
+            for (var i = 0; i < this.count; i++)
+                if (this[i] === target) {
+                    this[i] = replacement
+
+                    return
+                }
+        }
+
+        Collection.prototype.push = function (item) {
+            this[this.count] = item
+            this.count++
+
+            return this.count
+        }
+
+        Collection.prototype.pop = function () {
+            const lastItem = this[this.count - 1]
+            delete this[this.count - 1]
+            this.count--
+
+            return lastItem
+        }
+
+        /*
+        Collection.prototype.shift = function() {
+            // Collection {0: 3.141516, 1: 666, 2: 2000, count: 3}
+            // keep 3.141516
+            // Collection {0: 3.141516, 1: 666, 2: 2000, count: 2}
+            // Collection {0: 666, 1: 666, 2: 2000, count: 2}
+            // Collection {0: 666, 1: 2000, 2: 2000, count: 2}
+            // Collection {0: 666, 1: 2000, count: 2}
+            // return 3.141516
+
+            const firstItem = this[0] 
+
+            this.count--
+
+            for (let i = 0; i < this.count; i++) {
+                const item = this[i + 1]
+
+                this[i] = item
+            }
+
+            delete this[this.count]
+
+            return firstItem
+        }
+        */
+
+        Collection.prototype.shift = function () {
+
+
+            const firstItem = this[0]
+
+            for (let i = 1; i < this.count; i++) {
+                const item = this[i]
+
+                this[i - 1] = item
+            }
+
+            this.count--
+
+            delete this[this.count]
+
+            return firstItem
+        }
+
+
+
+        Collection.prototype.include = function (searchItem, fromIndex) {
+            // TODO implement Collection.prototype.includes
+
+
+            if (fromIndex === undefined) fromIndex = 0
+            else if (fromIndex < 0) fromIndex = this.count + fromIndex
+
+            for (let i = fromIndex; i < this.count; i++) {
+                const item = this[i]
+
+                if (item === searchItem) return true
+            }
+            return false
+
+        }
+
+        // TODO jodlin: Collection.prototype.sort
+
+        //Collection {0:'2', 1: '1', 2: '4', 3: '3', 4: '5', count: 3}
+        //
+
+
+
+        /*
+                Collection.prototype.sort = function () {
+                    let newOrder = []
+                    for (let i = 0; i < this.count; i++) {
+                        this[i] = String(this[i])
+                    }
+        
+                    for (let i = 0; i < this.count; i++) {
+                        item = this[i]
+                        let mayor = 0
+                        for (let j = 0; j < this.count; j++) {
+                            item2 = this[j]
+                            if (item < item2) {
+                                newOrder[j - 1] = item
+                                mayor = 1
+                            }
+                        }
+                        if (mayor === 0) {
+                            newOrder[this.count - 1] = item
+                        }
+                    }
+        
+                    return newOrder
+                }
+        
+        */
+
+        // TODO implement Collection.prototype.indexOf
+        // TODO implement Collection.prototype.reverse
+
+
+        // TODO sergio: Collection.prototype.shift
+
+        // test
+
+        const names = new Collection()
+        names.add('Juan')
+        names.add('Sergio')
+        names.add('Laura')
+        names.add('Albert')
+        names.add('Sergio')
+
+        const colors = new Collection()
+        colors.add('red')
+        colors.add('green')
+        colors.add('blue')
+
+        const nums = new Collection()
+        nums.add(3.141516) // PI
+        nums.add(666) // (..)
+        nums.add(2000)
+
+    </script>
+</body>
+
+</html>
