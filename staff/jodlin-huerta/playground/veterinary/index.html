@@ -217,7 +217,7 @@
             if (passport.length < 6) throw new Error('invalid passport length')
 
             if (typeof name !== 'string') throw new Error('Invalid name type')
-            if (name.length < 1) throw new Error('invalid name length')
+            if (name.length < 2) throw new Error('invalid name length')
 
             if (typeof yearOfBirth !== 'number') throw new Error('Invalid yearOfBirth type')
             if (yearOfBirth < 1900) throw new Error('invalid yearOfBirth ')
