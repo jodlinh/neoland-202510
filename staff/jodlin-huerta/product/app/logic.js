@@ -35,4 +35,25 @@ Logic.prototype.registerUser = function (
     data.insertUser(user)
 };
 
+
+
+Logic.prototype.loginUser = function (username, password) {
+    if (typeof username !== 'string') throw new Error('Invalid UserName type')
+    if (username.length < 3) throw new Error('Invalid UserName length')
+
+    if (typeof password !== 'string') throw new Error('Invalid Password type')
+
+    let user = data.findUserByUsername(username)
+    if (user === null) throw new Error('UserName not found')
+
+    if (user.password !== password) throw new Error('wrong password')
+
+    data.setLoggedInUserId(user.id)
+
+}
+
+Logic.prototype.logoutUser = function () {
+    data.unsetLoggedInUserId()
+}
+
 const logic = new Logic();

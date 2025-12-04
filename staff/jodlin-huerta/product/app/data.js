@@ -28,6 +28,7 @@ function Data() {
     this.usersCount = 0
     this.pets = []
     this.petsCount = 0
+    this.loggedInUserId = null
 
 }
 
@@ -60,6 +61,19 @@ Data.prototype.findUserByUsername = function (username) {
 Data.prototype.insertPet = function (pet) {
     this.pets.push(pet)
     this.petsCount++
+}
+
+
+Data.prototype.setLoggedInUserId = function (userId) {
+    this.loggedInUserId = userId
+}
+
+Data.prototype.getLoggedUserId = function () {
+    return this.loggedInUserId
+}
+
+Data.prototype.unsetLoggedInUserId = function () {
+    this.loggedInUserId = null
 }
 
 const data = new Data()
