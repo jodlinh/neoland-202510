@@ -9,16 +9,18 @@ function User(id, name, email, username, password, role) {
     this.role = role
 }
 
-function Pet(id, userId, chip, name, gender, birthday, specie, race, colors) {
+function Pet(id, userId, /*chip,*/ name, /*gender,*/ birthday, weight, /* specie, race, colors, */ image) {
     this.id = id
     this.userId = userId
-    this.chip = chip
+    // this.chip = chip
     this.name = name
-    this.gender = gender
+    //  this.gender = gender
     this.birthday = birthday
-    this.specie = specie
-    this.race = race
-    this.colors = colors
+    this.weight = weight
+    // this.specie = specie
+    // this.race = race
+    // this.colors = colors
+    this.image = image
 }
 
 //manager
@@ -72,9 +74,6 @@ Data.prototype.getLoggedUserId = function () {
     return this.loggedInUserId
 }
 
-Data.prototype.unsetLoggedInUserId = function () {
-    this.loggedInUserId = null
-}
 
 const data = new Data()
 

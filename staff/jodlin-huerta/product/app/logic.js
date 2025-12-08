@@ -53,7 +53,35 @@ Logic.prototype.loginUser = function (username, password) {
 }
 
 Logic.prototype.logoutUser = function () {
-    data.unsetLoggedInUserId()
+    data.setLoggedInUserId(null)
 }
+
+Logic.prototype.addPet = function (name, birthdate, weight, image) {
+    if (typeof name !== 'string') throw new Error('invalid name type')
+    if (name.length < 1) throw new Error('Invalid name length')
+    /*
+        if (typeof birthdate !== 'string') throw new Error('Invalid birthday type')
+        if (birthdate(4) !== '-' || birthdate(7) !== '-') throw new Error('invalid birthday format')
+    
+    */
+    //const isoDateRegex = new RegExp('^//d{4}-//d{2}-//d{2}$')
+    const isoDateRegex = /^\d{4}-\d{2}-\d{2}$/
+    if (!isoDateRegex.test(birthdate)) throw new Error('Invalid birthday format')
+
+
+    if (typeof weight !== 'number' || isNaN(weight)) throw new Error('Invalid weight type')
+
+    if (typeof image !== 'string') throw new Error('Invalid image type')
+
+    const urlRegex = /(www|http:|https:)+[^\s]+[\w]/
+    if (!urlRegex.test(image)) throw new Error('Invalid image format')
+
+    const pet = new Pet('pet-' + data.petsCount, data.loggedInUserId, name, birthdate, weight, image)
+
+    data.insertPet(pet)
+
+}
+
+
 
 const logic = new Logic();
