@@ -7,7 +7,7 @@ Logic.prototype.registerUser = function (
     password,
     passwordRepeat
 ) {
-    // TODO rules
+
     if (typeof name !== "string") throw new Error("invalid name type");
     if (name.length < 1) throw new Error("invalid name length");
 
@@ -57,6 +57,11 @@ Logic.prototype.logoutUser = function () {
 }
 
 Logic.prototype.addPet = function (name, birthdate, weight, image) {
+    const userId = data.getLoggedUserId()
+    if (userId === null) throw new Error('user not logged in')
+    if (data.findUserByUserId(userId) === null) throw new Error('user not exist')
+
+
     if (typeof name !== 'string') throw new Error('invalid name type')
     if (name.length < 1) throw new Error('Invalid name length')
     /*
@@ -64,6 +69,7 @@ Logic.prototype.addPet = function (name, birthdate, weight, image) {
         if (birthdate(4) !== '-' || birthdate(7) !== '-') throw new Error('invalid birthday format')
     
     */
+
     //const isoDateRegex = new RegExp('^//d{4}-//d{2}-//d{2}$')
     const isoDateRegex = /^\d{4}-\d{2}-\d{2}$/
     if (!isoDateRegex.test(birthdate)) throw new Error('Invalid birthday format')
@@ -76,9 +82,21 @@ Logic.prototype.addPet = function (name, birthdate, weight, image) {
     const urlRegex = /(www|http:|https:)+[^\s]+[\w]/
     if (!urlRegex.test(image)) throw new Error('Invalid image format')
 
-    const pet = new Pet('pet-' + data.petsCount, data.loggedInUserId, name, birthdate, weight, image)
+    const pet = new Pet('pet-' + data.petsCount, data.getLoggedUserId(), name, birthdate, weight, image)
 
     data.insertPet(pet)
+
+}
+
+
+Logic.prototype.getPets = function () {
+    const userId = data.getLoggedUserId()
+    if (userId === null) throw new Error('user not logged in')
+    if (data.findUserByUserId(userId) === null) throw new Error('user not exist')
+
+    const pets = data.findPetsByUserId(userId)
+
+    return pets
 
 }
 

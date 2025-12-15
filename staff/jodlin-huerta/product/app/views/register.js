@@ -1,166 +1,167 @@
-const registerView = document.createElement('div')
-registerView.style.display = 'none'
+const registerView = createView()
+hideView(registerView)
 
 
-const registerTitle = document.createElement('h1')
-registerTitle.textContent = 'MyPet'
-registerTitle.className = 'font-bold text-xl'
-registerView.appendChild(registerTitle)
+const registerTitle = createTitle()
+setTextContent(registerTitle, 'MyPet')
+setClass(registerTitle, 'font-bold text-xl')
+addChild(registerView, registerTitle)
 
-const registerSubtitle = document.createElement('h2')
-registerSubtitle.textContent = 'Register'
-registerSubtitle.className = 'font-bold'
-registerView.appendChild(registerSubtitle)
-
-
-const registerForm = document.createElement('form')
-registerForm.className = 'flex flex-col'
-
-const registerNameLabel = document.createElement('label')
-registerNameLabel.textContent = 'Name'
-registerNameLabel.htmlFor = 'name'
-registerForm.appendChild(registerNameLabel)
-const registerNameInput = document.createElement('input')
-registerNameInput.className = 'border'
-registerNameInput.id = 'name'
-registerNameInput.type = 'text'
-
-registerForm.appendChild(registerNameInput)
-
-const registerEmailLabel = document.createElement('label')
-registerEmailLabel.textContent = 'Email'
-registerEmailLabel.htmlFor = 'email'
-registerForm.appendChild(registerEmailLabel)
-const registerEmailInput = document.createElement('input')
-registerEmailInput.className = 'border'
-registerEmailInput.id = 'email'
-registerEmailInput.type = 'email'
-registerForm.appendChild(registerEmailInput)
-
-const registerUsernameLabel = document.createElement('label')
-registerUsernameLabel.textContent = 'Username'
-registerUsernameLabel.htmlFor = 'username'
-registerForm.appendChild(registerUsernameLabel)
-const registerUsernameInput = document.createElement('input')
-registerUsernameInput.className = 'border'
-registerUsernameInput.id = 'username'
-registerUsernameInput.type = 'text'
-registerForm.appendChild(registerUsernameInput)
+const registerSubtitle = createTitle2()
+setTextContent(registerSubtitle, 'Register')
+setClass(registerSubtitle, 'font-bold')
+addChild(registerView, registerSubtitle)
 
 
-const registerPasswordLabel = document.createElement('label')
-registerPasswordLabel.textContent = 'Password'
-registerPasswordLabel.htmlFor = 'password'
-registerForm.appendChild(registerPasswordLabel)
+const registerForm = createForm()
+setClass(registerForm, 'flex flex-col')
 
-const registerPasswordContainerDiv = document.createElement('div')
-registerPasswordContainerDiv.className = 'flex'
+const registerNameLabel = createLabel()
+setTextContent(registerNameLabel, 'Name')
+setFor(registerNameLabel, 'name')
+addChild(registerForm, registerNameLabel)
 
-const registerPasswordInput = document.createElement('input')
-registerPasswordInput.className = 'border'
-registerPasswordInput.id = 'password'
-registerPasswordInput.type = 'password'
-registerPasswordContainerDiv.appendChild(registerPasswordInput)
+const registerNameInput = createInput()
+setClass(registerNameInput, 'border')
+setId(registerNameInput, 'name')
+setType(registerNameInput, 'text')
+addChild(registerForm, registerNameInput)
 
-const registerShowPasswordButton = document.createElement('button')
-registerShowPasswordButton.className = 'bg-black text-white px-2 ms-4'
-registerShowPasswordButton.textContent = 'Show'
-registerPasswordContainerDiv.appendChild(registerShowPasswordButton)
-registerForm.appendChild(registerPasswordContainerDiv)
+const registerEmailLabel = createLabel()
+setTextContent(registerEmailLabel, 'Email')
+setFor(registerEmailLabel, 'email')
+addChild(registerForm, registerEmailLabel)
+
+const registerEmailInput = createInput()
+setClass(registerEmailInput, 'border')
+setId(registerEmailInput, 'email')
+setType(registerEmailInput, 'email')
+addChild(registerForm, registerEmailInput)
+
+const registerUsernameLabel = createLabel()
+setTextContent(registerUsernameLabel, 'Username')
+setFor(registerUsernameLabel, 'username')
+addChild(registerForm, registerUsernameLabel)
+
+const registerUsernameInput = createInput()
+setClass(registerUsernameInput, 'border')
+setId(registerUsernameInput, 'username')
+setType(registerUsernameInput, 'text')
+addChild(registerForm, registerUsernameInput)
+
+
+const registerPasswordLabel = createLabel()
+setTextContent(registerPasswordLabel, 'Password')
+setFor(registerPasswordLabel, 'password')
+addChild(registerForm, registerPasswordLabel)
+
+const registerPasswordContainerDiv = createPanel()
+setClass(registerPasswordContainerDiv, 'flex')
+
+const registerPasswordInput = createInput()
+setClass(registerPasswordInput, 'border')
+setId(registerPasswordInput, 'password')
+setType(registerPasswordInput, 'password')
+addChild(registerPasswordContainerDiv, registerPasswordInput)
+
+const registerShowPasswordButton = createButton()
+setClass(registerShowPasswordButton, 'bg-black text-white px-2 ms-4')
+setTextContent(registerShowPasswordButton, 'Show')
+addChild(registerPasswordContainerDiv, registerShowPasswordButton)
+addChild(registerForm, registerPasswordContainerDiv)
 
 
 registerShowPasswordButton.addEventListener('click', function (event) {
     event.preventDefault()
-    if (registerPasswordInput.type === 'password') {
-        registerPasswordInput.type = 'text'
-        registerShowPasswordButton.textContent = 'Hide'
+    if (getType(registerPasswordInput) === 'password') {
+        setType(registerPasswordInput, 'text')
+        setTextContent(registerShowPasswordButton, 'Hide')
     } else {
-        registerPasswordInput.type = 'password'
-        registerShowPasswordButton.textContent = 'Show'
+        setType(registerPasswordInput, 'password')
+        setTextContent(registerShowPasswordButton, 'Show')
 
     }
 })
 
 
 
-const registerPasswordRepeatLabel = document.createElement('label')
-registerPasswordRepeatLabel.textContent = 'Repeat Password'
-registerPasswordRepeatLabel.htmlFor = 'passwordRepeat'
-registerForm.appendChild(registerPasswordRepeatLabel)
+const registerPasswordRepeatLabel = createLabel()
+setTextContent(registerPasswordRepeatLabel, 'Repeat Password')
+setFor(registerPasswordRepeatLabel, 'passwordRepeat')
+addChild(registerForm, registerPasswordRepeatLabel)
 
 
 const registerPasswordRepeatContainerDiv = document.createElement('div')
 
-const registerPasswordRepeatInput = document.createElement('input')
-registerPasswordRepeatInput.className = 'border'
-registerPasswordRepeatInput.id = 'passwordRepeat'
-registerPasswordRepeatInput.type = 'password'
-registerPasswordRepeatContainerDiv.appendChild(registerPasswordRepeatInput)
+const registerPasswordRepeatInput = createInput()
+setClass(registerPasswordRepeatInput, 'border')
+setId(registerPasswordRepeatInput, 'passwordRepeat')
+setType(registerPasswordRepeatInput, 'password')
+addChild(registerPasswordRepeatContainerDiv, registerPasswordRepeatInput)
 
-const registerShowPasswordRepeatButton = document.createElement('button')
-registerShowPasswordRepeatButton.className = 'bg-black text-white px-2 ms-4'
-registerShowPasswordRepeatButton.textContent = 'Show'
-registerPasswordRepeatContainerDiv.appendChild(registerShowPasswordRepeatButton)
+const registerShowPasswordRepeatButton = createButton()
+setClass(registerShowPasswordRepeatButton, 'bg-black text-white px-2 ms-4')
+setTextContent(registerShowPasswordRepeatButton, 'Show')
+addChild(registerPasswordRepeatContainerDiv, registerShowPasswordRepeatButton)
 
-registerForm.appendChild(registerPasswordRepeatContainerDiv)
+addChild(registerForm, registerPasswordRepeatContainerDiv)
 
 registerShowPasswordRepeatButton.addEventListener('click', function (event) {
     event.preventDefault()
-    if (registerPasswordRepeatInput.type === 'password') {
-        registerPasswordRepeatInput.type = 'text'
-        registerShowPasswordRepeatButton.textContent = 'Hide'
+    if (getType(registerPasswordRepeatInput) === 'password') {
+        setType(registerPasswordRepeatInput, 'text')
+        setTextContent(registerShowPasswordRepeatButton, 'Hide')
     } else {
-        registerPasswordRepeatInput.type = 'password'
-        registerShowPasswordRepeatButton.textContent = 'Show'
+        setType(registerPasswordRepeatInput, 'password')
+        setTextContent(registerShowPasswordRepeatButton, 'Show')
     }
 })
 
 
 
-const registerSubmitButton = document.createElement('button')
-registerSubmitButton.type = 'submit'
-registerSubmitButton.className = 'bg-black self-end text-white px-2 mt-4'
-registerSubmitButton.textContent = 'Register'
-registerForm.appendChild(registerSubmitButton)
-registerView.appendChild(registerForm)
+const registerSubmitButton = createButton()
+setType(registerSubmitButton, 'submit')
+setClass(registerSubmitButton, 'bg-black self-end text-white px-2 mt-4')
+setTextContent(registerSubmitButton, 'Register')
+addChild(registerForm, registerSubmitButton)
+addChild(registerView, registerForm)
 
 
 registerForm.addEventListener('submit', function (event) {
     event.preventDefault()
-    const name = registerNameInput.value
-    const email = registerEmailInput.value
-    const username = registerUsernameInput.value
-    const password = registerPasswordInput.value
-    const passwordRepeat = registerPasswordRepeatInput.value
+    const name = getValue(registerNameInput)
+    const email = getValue(registerEmailInput)
+    const username = getValue(registerUsernameInput)
+    const password = getValue(registerPasswordInput)
+    const passwordRepeat = getValue(registerPasswordRepeatInput)
 
     try {
         logic.registerUser(name, email, username, password, passwordRepeat)
-        registerForm.reset()
-        registerFeedback.textContent = ''
+        reset(registerForm)
+        setTextContent(registerFeedback, '')
 
-        registerView.style.display = 'none'
-        loginView.style.display = ''
+        hideView(registerView)
+        showView(loginView)
     } catch (error) {
-        registerFeedback.textContent = error.message
+        setTextContent(registerFeedback, error.message)
     }
 
 })
 
-const registerLoginLink = document.createElement('a')
-registerLoginLink.className = 'underline font-bold'
-registerLoginLink.textContent = 'Login'
-registerLoginLink.href = ''
-registerView.appendChild(registerLoginLink)
+const registerLoginLink = createLink()
+setClass(registerLoginLink, 'underline font-bold')
+setTextContent(registerLoginLink, 'Login')
+addChild(registerView, registerLoginLink)
 
 
 registerLoginLink.addEventListener('click', function (event) {
     event.preventDefault()
-    loginView.style.display = ''
-    registerView.style.display = 'none'
+    showView(loginView)
+    hideView(registerView)
 
 })
 
-const registerFeedback = document.createElement('p')
-registerView.appendChild(registerFeedback)
+const registerFeedback = createParagraph()
+addChild(registerView, registerFeedback)
 
-document.body.appendChild(registerView)
+addChild(document.body, registerView)

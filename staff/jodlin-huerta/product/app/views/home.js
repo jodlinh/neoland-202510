@@ -1,44 +1,79 @@
-const homeView = document.createElement('div')
-homeView.style.display = 'none'
+const homeView = createView()
+hideView(homeView)
 
-const homeTitle = document.createElement('h1')
-homeTitle.textContent = 'MyPet'
-homeTitle.className = 'font-bold text-xl'
-homeView.appendChild(homeTitle)
+const homeTitle = createTitle()
+setTextContent(homeTitle, 'MyPet')
+setClass(homeTitle, 'font-bold text-xl')
+addChild(homeView, homeTitle)
 
-const homeSubTitle = document.createElement('h2')
-homeSubTitle.textContent = 'Welcome Home!'
-homeView.appendChild(homeSubTitle)
-
-
-const homeTopPanel = document.createElement('div')
-homeTopPanel.className = 'flex justify-between'
+const homeSubTitle = createTitle2()
+setTextContent(homeSubTitle, 'Welcome Home!')
+addChild(homeView, homeSubTitle)
 
 
-const homeAddPetButton = document.createElement('button')
-homeAddPetButton.className = 'self-end bg-black text-white px-2 font-bold'
-homeAddPetButton.textContent = '+ Pet'
-homeTopPanel.appendChild(homeAddPetButton)
+const homeTopPanel = createPanel()
+setClass(homeTopPanel, 'flex justify-between')
+
+
+const homeAddPetButton = createButton()
+setClass(homeAddPetButton, 'self-end bg-black text-white px-2 font-bold')
+setTextContent(homeAddPetButton, '+ Pet')
+addChild(homeTopPanel, homeAddPetButton)
 
 homeAddPetButton.addEventListener('click', function (event) {
     event.preventDefault()
 
-    homeView.style.display = 'none'
-    addPetView.style.display = ''
+    hideView(homeView)
+    showView(addPetView)
 
 })
 
-const homeLogoutButton = document.createElement('button')
-homeLogoutButton.className = 'self-end bg-black text-white px-2 font-bold'
-homeLogoutButton.textContent = 'Logout'
-homeTopPanel.appendChild(homeLogoutButton)
+const homeLogoutButton = createButton()
+setClass(homeLogoutButton, 'self-end bg-black text-white px-2 font-bold')
+setTextContent(homeLogoutButton, 'Logout')
+addChild(homeTopPanel, homeLogoutButton)
 
 homeLogoutButton.addEventListener('click', function () {
     logic.logoutUser()
-    homeView.style.display = 'none'
-    loginView.style.display = ''
+    hideView(homeView)
+    showView(loginView)
+
+    clearHomePetList()
 })
 
+const homePetList = createUnordenerList()
+addChild(homeView, homePetList)
 
-homeView.appendChild(homeTopPanel)
-document.body.appendChild(homeView)
+addChild(homeView, homeTopPanel)
+addChild(document.body, homeView)
+
+
+function refreshHomePetsList() {
+    const pets = logic.getPets()
+
+    for (let i = 0; i < pets.length; i++) {
+        const pet = pets[i]
+
+        const item = createListItem()
+        setClass(item, 'flex')
+        const image = createImage()
+        setSource(image, pet.image)
+        setClass(image, 'rounded-[50%] w-20 h-20')
+        addChild(item, image)
+
+        const name = createParagraph()
+        setTextContent(name, pet.name)
+        addChild(item, name)
+
+        addChild(homePetList, item)
+    }
+
+}
+
+function clearHomePetList() {
+    for (let i = homePetList.children.length - 1; i >= 0; i--) {
+        const child = homePetList.children[i]
+
+        removeChild(homePetList, child)
+    }
+}
