@@ -3,7 +3,6 @@ hideView(addPetView)
 
 const addPetTitle = createTitle()
 setTextContent(addPetTitle, 'MyPet')
-setClass(addPetTitle, 'font-bold text-xl')
 addChild(addPetView, addPetTitle)
 
 const addPetTopPanel = createPanel()
@@ -11,12 +10,10 @@ setClass(addPetTopPanel, 'flex justify-between')
 
 const addPetSubtitle = createTitle2()
 setTextContent(addPetSubtitle, 'Add Pet!')
-setClass(addPetSubtitle, 'font-bold')
 addChild(addPetTopPanel, addPetSubtitle)
 
 const addPetBackLink = createLink()
 setTextContent(addPetBackLink, '< Back')
-setClass(addPetBackLink, 'underline font-bold')
 addChild(addPetTopPanel, addPetBackLink)
 addChild(addPetView, addPetTopPanel)
 
@@ -80,7 +77,7 @@ addChild(addPetForm, addPetImageInput)
 
 const addPetSubmitButton = createButton()
 setType(addPetSubmitButton, 'submit')
-setClass(addPetSubmitButton, 'bg-black self-center text-white px-2 mt-4')
+//setClass(addPetSubmitButton, 'bg-black self-center text-white px-2 mt-4')
 setTextContent(addPetSubmitButton, 'Add Pet')
 addChild(addPetForm, addPetSubmitButton)
 addChild(addPetView, addPetForm)
@@ -100,7 +97,7 @@ addPetForm.addEventListener('submit', function (event) {
 
         clearHomePetList()
 
-        refreshHomePetsList()
+        renderHomePetsList()
 
         hideView(addPetView)
         showView(homeView)

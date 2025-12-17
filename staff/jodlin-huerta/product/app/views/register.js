@@ -4,12 +4,10 @@ hideView(registerView)
 
 const registerTitle = createTitle()
 setTextContent(registerTitle, 'MyPet')
-setClass(registerTitle, 'font-bold text-xl')
 addChild(registerView, registerTitle)
 
 const registerSubtitle = createTitle2()
 setTextContent(registerSubtitle, 'Register')
-setClass(registerSubtitle, 'font-bold')
 addChild(registerView, registerSubtitle)
 
 
@@ -91,7 +89,7 @@ setFor(registerPasswordRepeatLabel, 'passwordRepeat')
 addChild(registerForm, registerPasswordRepeatLabel)
 
 
-const registerPasswordRepeatContainerDiv = document.createElement('div')
+const registerPasswordRepeatContainerDiv = createPanel()
 
 const registerPasswordRepeatInput = createInput()
 setClass(registerPasswordRepeatInput, 'border')
@@ -149,7 +147,6 @@ registerForm.addEventListener('submit', function (event) {
 })
 
 const registerLoginLink = createLink()
-setClass(registerLoginLink, 'underline font-bold')
 setTextContent(registerLoginLink, 'Login')
 addChild(registerView, registerLoginLink)
 

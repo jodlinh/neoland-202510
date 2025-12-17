@@ -92,6 +92,15 @@ Data.prototype.findPetsByUserId = function (userId) {
 
 }
 
+Data.prototype.findPetsById = function (petId) {
+    for (let i = 0; i < this.pets.length; i++) {
+        const pet = this.pets[i]
+        if (pet.id === petId)
+            return pet
+    }
+    return null
+
+}
 
 const data = new Data()
 

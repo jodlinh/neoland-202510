@@ -58,19 +58,14 @@ Logic.prototype.logoutUser = function () {
 
 Logic.prototype.addPet = function (name, birthdate, weight, image) {
     const userId = data.getLoggedUserId()
-    if (userId === null) throw new Error('user not logged in')
     if (data.findUserByUserId(userId) === null) throw new Error('user not exist')
+    if (userId === null) throw new Error('user not logged in')
+
 
 
     if (typeof name !== 'string') throw new Error('invalid name type')
     if (name.length < 1) throw new Error('Invalid name length')
-    /*
-        if (typeof birthdate !== 'string') throw new Error('Invalid birthday type')
-        if (birthdate(4) !== '-' || birthdate(7) !== '-') throw new Error('invalid birthday format')
-    
-    */
 
-    //const isoDateRegex = new RegExp('^//d{4}-//d{2}-//d{2}$')
     const isoDateRegex = /^\d{4}-\d{2}-\d{2}$/
     if (!isoDateRegex.test(birthdate)) throw new Error('Invalid birthday format')
 
@@ -97,6 +92,29 @@ Logic.prototype.getPets = function () {
     const pets = data.findPetsByUserId(userId)
 
     return pets
+
+}
+
+Logic.prototype.deletePet = function (petId) {
+    const userId = data.getLoggedUserId()
+    if (data.findUserByUserId(userId) === null) throw new Error('user not exist')
+    if (userId === null) throw new Error('user not logged in')
+
+    if (typeof petId !== 'string') throw new Error('invalid pet-id type')
+
+    const petIdRegex = /^\pet-[0-9]+$/
+    if (!petIdRegex.test(petId)) throw new Error('invalid pet-id format')
+
+    const pet = data.findPetsById(petId)
+    if (pet === null) throw new Error('pet not found')
+
+    if (pet.userId !== data.getLoggedUserId()) throw new Error('user not owner of pet')
+
+    const petIndex = data.pets.indexOf(pet)
+    data.pets.splice(petIndex, 1)
+
+
+
 
 }
 
