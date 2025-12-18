@@ -11,7 +11,7 @@ function App() {
         const setDisplayValue = displayState[1]
 
 
-        const handDelete = () => {
+        const handleDelete = () => {
                 let result = displayValue.slice(0, -1)
 
                 if (result.length == 0)
@@ -20,14 +20,45 @@ function App() {
                 setDisplayValue(result)
         }
 
-        const pulsed = (value) => {
+        const handlePressedKey = (value) => {
                 if (value == 'AC')
                         setDisplayValue('0')
                 else if (value === ',') {
-                        const found = displayValue.indexOf(value)
-                        if (found === -1)
+                        const length = displayValue.length
+                        const found = displayValue.lastIndexOf(value)
+
+                        if (found !== length - 1)
                                 setDisplayValue(displayValue + value)
 
+                }
+                else if (value === 'mm') {
+
+                        if (displayValue.slice(-1) == ')') {
+                                const charFound = displayValue.lastIndexOf('(')
+                                const cifra = displayValue.substring(charFound + 2, displayValue.lastIndexOf(')'))
+
+                                const operation = displayValue.replace('(-' + cifra + ')', cifra)
+                                setDisplayValue(operation)
+                        } else {
+                                for (let i = displayValue.length - 1; i >= 0; i--) {
+                                        const caracter = displayValue.charAt(i)
+                                        if (caracter == '+' || caracter == '-' || caracter == 'x' || caracter == '÷') {
+                                                const charFound = displayValue.lastIndexOf(caracter)
+                                                const cifra = displayValue.substring(charFound + 1)
+
+                                                const operation = displayValue.replace(cifra, '(-' + cifra + ')')
+                                                setDisplayValue(operation)
+                                                return
+                                        }
+                                }
+
+                                if (displayValue !== 0) {
+                                        const cifra = displayValue.substring(0)
+                                        const operation = displayValue.replace(cifra, '(-' + cifra + ')')
+                                        setDisplayValue(operation)
+                                }
+
+                        }
                 } else if (displayValue == 0)
                         setDisplayValue(value)
                 else if (value === '=') {
@@ -37,11 +68,8 @@ function App() {
                         setDisplayValue(result)
 
                 } else {
-
-
                         setDisplayValue(displayValue + value)
                 }
-
         }
 
         return <div className="border-2 m-2 p-2 rounded-2xl bg-gray-800 text-white">
@@ -49,50 +77,50 @@ function App() {
 
                 <div className="p-2 flex flex-col gap-2">
                         <div className="flex justify-between">
-                                <div className="bg-gray-400 p-2 rounded-full w-10 h-10 flex justify-center items-center" onClick={handDelete}>⌫</div>
-                                <div className="bg-gray-400 p-2 rounded-full w-10 h-10 flex justify-center items-center" onClick={() => pulsed('AC')}>AC</div>
+                                <div className="bg-gray-400 p-2 rounded-full w-10 h-10 flex justify-center items-center" onClick={handleDelete}>⌫</div>
+                                <div className="bg-gray-400 p-2 rounded-full w-10 h-10 flex justify-center items-center" onClick={() => handlePressedKey('AC')}>AC</div>
                                 <div className="bg-gray-400 p-2 rounded-full w-10 h-10 flex justify-center items-center">%</div>
-                                <div className="bg-orange-400 p-2 rounded-full w-10 h-10 flex justify-center items-center" onClick={() => pulsed('÷')}>÷</div>
+                                <div className="bg-orange-400 p-2 rounded-full w-10 h-10 flex justify-center items-center" onClick={() => handlePressedKey('÷')}>÷</div>
                         </div>
                         <div className="flex justify-between">
                                 <div className="bg-gray-600 p-2 rounded-full w-10 h-10 flex 
-                        justify-center items-center" onClick={() => pulsed('7')}>7</div>
+                        justify-center items-center" onClick={() => handlePressedKey('7')}>7</div>
                                 <div className="bg-gray-600 p-2 rounded-full w-10 h-10 flex 
-                        justify-center items-center" onClick={() => pulsed('8')}>8</div>
+                        justify-center items-center" onClick={() => handlePressedKey('8')}>8</div>
                                 <div className="bg-gray-600 p-2 rounded-full w-10 h-10 flex 
-                        justify-center items-center" onClick={() => pulsed('9')}>9</div>
+                        justify-center items-center" onClick={() => handlePressedKey('9')}>9</div>
                                 <div className="bg-orange-400 p-2 rounded-full w-10 h-10 flex 
-                        justify-center items-center"  onClick={() => pulsed('x')}>x</div>
+                        justify-center items-center"  onClick={() => handlePressedKey('x')}>x</div>
                         </div>
                         <div className="flex justify-between">
                                 <div className="bg-gray-600 p-2 rounded-full w-10 h-10 flex 
-                        justify-center items-center" onClick={() => pulsed('4')}>4</div>
+                        justify-center items-center" onClick={() => handlePressedKey('4')}>4</div>
                                 <div className="bg-gray-600 p-2 rounded-full w-10 h-10 flex 
-                        justify-center items-center" onClick={() => pulsed('5')}>5</div>
+                        justify-center items-center" onClick={() => handlePressedKey('5')}>5</div>
                                 <div className="bg-gray-600 p-2 rounded-full w-10 h-10 flex 
-                        justify-center items-center" onClick={() => pulsed('6')}>6</div>
+                        justify-center items-center" onClick={() => handlePressedKey('6')}>6</div>
                                 <div className="bg-orange-400 p-2 rounded-full w-10 h-10 flex 
-                        justify-center items-center" onClick={() => pulsed('-')}>-</div>
+                        justify-center items-center" onClick={() => handlePressedKey('-')}>-</div>
                         </div>
                         <div className="flex justify-between">
                                 <div className="bg-gray-600 p-2 rounded-full w-10 h-10 flex 
-                        justify-center items-center" onClick={() => pulsed('1')}>1</div>
+                        justify-center items-center" onClick={() => handlePressedKey('1')}>1</div>
                                 <div className="bg-gray-600 p-2 rounded-full w-10 h-10 flex 
-                        justify-center items-center" onClick={() => pulsed('2')}>2</div>
+                        justify-center items-center" onClick={() => handlePressedKey('2')}>2</div>
                                 <div className="bg-gray-600 p-2 rounded-full w-10 h-10 flex 
-                        justify-center items-center" onClick={() => pulsed('3')}>3</div>
+                        justify-center items-center" onClick={() => handlePressedKey('3')}>3</div>
                                 <div className="bg-orange-400 p-2 rounded-full w-10 h-10 flex 
-                        justify-center items-center" onClick={() => pulsed('+')} >+</div>
+                        justify-center items-center" onClick={() => handlePressedKey('+')} >+</div>
                         </div>
                         <div className="flex justify-between">
                                 <div className="bg-gray-600 p-2 rounded-full w-10 h-10 flex 
-                        justify-center items-center">+/-</div>
+                        justify-center items-center" onClick={() => handlePressedKey('mm')}  >+/-</div>
                                 <div className="bg-gray-600 p-2 rounded-full w-10 h-10 flex 
-                        justify-center items-center" onClick={() => pulsed('0')}>0</div>
+                        justify-center items-center" onClick={() => handlePressedKey('0')}>0</div>
                                 <div className="bg-gray-600 p-2 rounded-full w-10 h-10 flex 
-                        justify-center items-center" onClick={() => pulsed(',')}>,</div>
+                        justify-center items-center" onClick={() => handlePressedKey(',')}>,</div>
                                 <div className="bg-orange-400 p-2 rounded-full w-10 h-10 flex 
-                        justify-center items-center" onClick={() => pulsed('=')} >=</div>
+                        justify-center items-center" onClick={() => handlePressedKey('=')} >=</div>
                         </div>
 
                 </div>
