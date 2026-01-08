@@ -24,29 +24,48 @@ function App() {
                 if (value == 'AC')
                         setDisplayValue('0')
                 else if (value === ',') {
-                        const length = displayValue.length
-                        const found = displayValue.lastIndexOf(value)
+                        const lastCharacter = displayValue.at(-1)
+                        
+                        if (lastCharacter === ',') return
 
-                        if (found !== length - 1)
-                                setDisplayValue(displayValue + value)
+                        let newValue
+
+                        if (lastCharacter == '+' || lastCharacter == '-' || lastCharacter == 'x' || lastCharacter == '÷') {
+                                newValue = displayValue + '0,'
+                        } 
+
+                        
+
+                        setDisplayValue(newValue)
+
 
                 }
-                else if (value === 'mm') {
+                else if (value === 'changeSymbol') {
+                        const lastCharacter = displayValue.slice(-1)
 
-                        if (displayValue.slice(-1) == ')') {
+                        if (displayValue == 0 || lastCharacter == '+' || lastCharacter == '-' || lastCharacter == 'x' || lastCharacter == '÷') return
+
+                        if (lastCharacter == ')') {
                                 const charFound = displayValue.lastIndexOf('(')
-                                const cifra = displayValue.substring(charFound + 2, displayValue.lastIndexOf(')'))
+                                const number = displayValue.substring(charFound)
+                                const lastNumberIndex = displayValue.lastIndexOf(number)
 
-                                const operation = displayValue.replace('(-' + cifra + ')', cifra)
+                                const remaingNumbers = displayValue.substring(0, lastNumberIndex)
+                                const positiveNumber = number.substring(2, number.length - 1)
+
+                                const operation = remaingNumbers + positiveNumber
                                 setDisplayValue(operation)
+
                         } else {
-                                for (let i = displayValue.length - 1; i >= 0; i--) {
+                                for (let i = displayValue.length -1; i > 0; i--) {
                                         const caracter = displayValue.charAt(i)
                                         if (caracter == '+' || caracter == '-' || caracter == 'x' || caracter == '÷') {
                                                 const charFound = displayValue.lastIndexOf(caracter)
-                                                const cifra = displayValue.substring(charFound + 1)
+                                                const number = displayValue.substring(charFound + 1)
 
-                                                const operation = displayValue.replace(cifra, '(-' + cifra + ')')
+                                                const lastNumberIndex = displayValue.lastIndexOf(number)
+                                                const remaingNumbers = displayValue.substring(0, lastNumberIndex)
+                                                const operation = remaingNumbers + '(-' + number + ')'
                                                 setDisplayValue(operation)
                                                 return
                                         }
@@ -67,7 +86,17 @@ function App() {
 
                         setDisplayValue(result)
 
-                } else {
+                }
+
+                else if (value == '+' || value == '-' || value == 'x' || value == '÷') {
+                        const lastCharacter = displayValue.at(-1)
+
+                        if (lastCharacter == '+' || lastCharacter == '-' || lastCharacter == 'x' || lastCharacter == '÷') return
+
+                        setDisplayValue(displayValue + value)
+                }
+
+                else {
                         setDisplayValue(displayValue + value)
                 }
         }
@@ -114,7 +143,7 @@ function App() {
                         </div>
                         <div className="flex justify-between">
                                 <div className="bg-gray-600 p-2 rounded-full w-10 h-10 flex 
-                        justify-center items-center" onClick={() => handlePressedKey('mm')}  >+/-</div>
+                        justify-center items-center" onClick={() => handlePressedKey('changeSymbol')}  >+/-</div>
                                 <div className="bg-gray-600 p-2 rounded-full w-10 h-10 flex 
                         justify-center items-center" onClick={() => handlePressedKey('0')}>0</div>
                                 <div className="bg-gray-600 p-2 rounded-full w-10 h-10 flex 
