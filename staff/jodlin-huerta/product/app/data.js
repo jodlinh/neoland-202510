@@ -100,6 +100,17 @@ class Data {
         }
         return null
     }
+
+
+    changePasswordUser(newPassword) {
+        const userId = this.loggedInUserId
+        for (let i = 0; i < this.users.length; i++) {
+            const user = this.users[i]
+            if (user.id === userId)
+                user.password = newPassword
+        }
+    }
+
 }
 
 const data = new Data()
