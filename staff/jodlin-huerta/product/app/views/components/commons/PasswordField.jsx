@@ -1,6 +1,9 @@
-const { useState } = React
+import { useState } from "react"
+import { Input } from "./Input"
+import { Button } from "./Button"
+import { Label } from "./Label"
 
-function PasswordField({ alias, children }) {
+export function PasswordField({ alias, children }) {
     const [type, setType] = useState('password')
 
     const handleTogglePasswordClick = event => {

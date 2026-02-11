@@ -1,9 +1,20 @@
-const { useState } = React
+import { useState } from "react"
 
-function Register({ onRegister, onLoginClick }) {
+import { logic } from "../logic"
+
+import { A } from "./components/commons/A"
+import { H1 } from "./components/commons/H1"
+import { H2 } from "./components/commons/H2"
+import { Form } from "./components/commons/Form"
+import { Field } from "./components/commons/Field"
+import { PasswordField } from "./components/commons/PasswordField"
+import { Button } from "./components/commons/Button"
+
+
+
+export function Register({ onRegister, onLoginClick }) {
 
     const [message, setMessage] = useState('')
-
 
     const handleRegisterSubmit = event => {
         event.preventDefault()
@@ -17,14 +28,10 @@ function Register({ onRegister, onLoginClick }) {
 
         try {
             logic.registerUser(name, email, username, password, passwordRepeat)
-
-            form.reset()
-
-            setMessage('')
-
-
-            onRegister()
-
+                .then(() => {
+                    onRegister()
+                })
+                .catch(error => setMessage(error.message))
         } catch (error) {
             setMessage(error.message)
         }

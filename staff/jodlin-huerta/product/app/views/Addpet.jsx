@@ -1,6 +1,17 @@
-const { useState } = React
+import { useState } from "react"
 
-function Addpet({ onBackClick, onAddPet }) {
+import { logic } from "../logic"
+
+import { A } from "./components/commons/A"
+import { H1 } from "./components/commons/H1"
+import { H2 } from "./components/commons/H2"
+import { Form } from "./components/commons/Form"
+import { Field } from "./components/commons/Field"
+import { Button } from "./components/commons/Button"
+
+
+
+export function Addpet({ onBackClick, onAddPet }) {
 
     const [message, setMessage] = useState('')
 
@@ -21,12 +32,10 @@ function Addpet({ onBackClick, onAddPet }) {
 
         try {
             logic.addPet(name, birthday, weight, image)
-
-            form.reset()
-
-            setMessage('')
-
-            onAddPet()
+                .then(() => {
+                    onAddPet()
+                })
+                .catch(error => setMessage(error.message))
         } catch (error) {
             setMessage(error.message)
         }

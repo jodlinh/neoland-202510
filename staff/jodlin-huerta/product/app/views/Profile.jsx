@@ -1,6 +1,12 @@
-const { useState } = React
+import { Component, useState } from "react"
+import { A } from "./components/commons/A"
+import { H1 } from "./components/commons/H1"
+import { H2 } from "./components/commons/H2"
+import { UpdatePasswordProfile } from "./components/UpdatePasswordProfile"
 
-function Profile({ onBackClick }) {
+import { UpdateEmailProfile } from "./components/UpdateEmailProfile"
+
+export function Profile({ onBackClick }) {
     const [view, setView] = useState(null)
 
     const handleBackClick = event => {

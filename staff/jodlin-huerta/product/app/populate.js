@@ -1,3 +1,7 @@
+/*
+
+import { data, User, Pet } from "./data"
+
 data.insertUser(new User('user-' + data.usersCount, 'Rafa', 'rafa@huerta.com', 'rafa', '123123123', 'regular'))
 data.insertUser(new User('user-' + data.usersCount, 'Maria', 'maria@huerta.com', 'maria', '123123123', 'regular'))
 data.insertUser(new User('user-' + data.usersCount, 'Juan', 'juan@huerta.com', 'juan', '123123123', 'regular'))
@@ -11,3 +15,5 @@ data.insertPet(new Pet('pet-' + data.petsCount, 'user-2', 'thor', '2025-04-02', 
 data.insertPet(new Pet('pet-' + data.petsCount, 'user-3', 'minino', '2025-01-11', 6.5, 'http://google.com'))
 data.insertPet(new Pet('pet-' + data.petsCount, 'user-3', 'pancho', '2021-07-01', 8.5, 'http://google.com'))
 data.insertPet(new Pet('pet-' + data.petsCount, 'user-3', 'cosito', '2025-10-10', 6, 'http://google.com'))
+
+*/

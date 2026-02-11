@@ -1,6 +1,13 @@
-const { useState, useEffect } = React
+import { useState, useEffect } from 'react'
+import { A } from "./components/commons/A"
+import { H1 } from "./components/commons/H1"
+import { H2 } from "./components/commons/H2"
+import { Button } from "./components/commons/Button"
+import { PetList } from "./components/PerList"
 
-function Home({ onLogout, onAddPetClick, onProfileClick }) {
+import { logic } from "../logic"
+
+export function Home({ onLogout, onAddPetClick, onProfileClick }) {
 
     const [message, setMessage] = useState('')
 
@@ -8,14 +15,12 @@ function Home({ onLogout, onAddPetClick, onProfileClick }) {
     const handleLogoutClick = event => {
         event.preventDefault()
 
-        try {
+        logic.logoutUser()
 
-            setMessage('')
+        setMessage('')
 
-            onLogout()
-        } catch {
-            setMessage('sorry, no vas a salir')
-        }
+        onLogout()
+
     }
 
     const handleAddPetClick = event => {

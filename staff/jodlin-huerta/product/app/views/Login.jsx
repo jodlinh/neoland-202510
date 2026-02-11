@@ -1,6 +1,17 @@
-const { useState } = React
+import { useState } from "react"
 
-function Login({ onLogin, onRegisterClick }) {
+import { logic } from "/logic"
+
+import { A } from "./components/commons/A"
+import { H1 } from "./components/commons/H1"
+import { H2 } from "./components/commons/H2"
+import { Form } from "./components/commons/Form"
+import { Field } from "./components/commons/Field"
+import { PasswordField } from "./components/commons/PasswordField"
+import { Button } from "./components/commons/Button"
+
+
+export function Login({ onLogin, onRegisterClick }) {
 
     const [message, setMessage] = useState('')
     const [passwordType, setPasswordType] = useState('password')
@@ -15,21 +26,13 @@ function Login({ onLogin, onRegisterClick }) {
 
         try {
             logic.loginUser(username, password)
-
-            form.reset()
-
-            setMessage('')
-            setPasswordType('password')
-
-            onLogin()
+                .then(() => {
+                    onLogin()
+                })
+                .catch(error => setMessage(error.message))
         } catch (error) {
             setMessage(error.message)
         }
-    }
-
-    const handleTogglePasswordClick = event => {
-        event.preventDefault()
-        setPasswordType(passwordType === 'password' ? 'text' : 'password')
     }
 
     const handleRegisterClick = event => {
@@ -37,8 +40,6 @@ function Login({ onLogin, onRegisterClick }) {
 
         onRegisterClick()
     }
-
-
 
     return <div className="p-4">
         <H1>MyPet</H1>

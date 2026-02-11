@@ -1,0 +1,1 @@
+curl -X PATCH -H 'Authorization: Basic user-0' -H 'Content-type: application/json' -d '{"newName": "Rafael" }' http://localhost:8080/users/name -v

@@ -1,6 +1,15 @@
-const { useState } = React
+import { useState } from "react"
 
-function UpdateEmailProfile({ }) {
+import { logic } from "../../logic"
+
+import { Form } from "./commons/Form"
+
+import { Field } from "./commons/Field"
+
+import { Button } from "./commons/Button"
+
+
+export function UpdateEmailProfile({ }) {
     const [message, setMessage] = useState('')
 
     const handleChangeEmail = event => {
@@ -13,6 +22,7 @@ function UpdateEmailProfile({ }) {
 
         try {
             logic.updateUserEmail(currentEmail, newEmail, repeatEmail)
+            
 
             form.reset()
             setMessage('Email has been changed!!')

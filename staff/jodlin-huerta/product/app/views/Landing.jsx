@@ -1,4 +1,8 @@
-function Landing({ onLogin, onRegisterClick }) {
+import { A } from "./components/commons/A"
+
+import { H1 } from "./components/commons/H1"
+
+export function Landing({ onLogin, onRegisterClick }) {
 
     const handleLoginClick = event => {
         event.preventDefault()

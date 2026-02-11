@@ -1,6 +1,13 @@
-const { useState } = React
+import { useState } from "react"
+import { Landing } from "./views/Landing"
+import { Login } from "./views/Login"
+import { Register } from "./views/Register"
+import { Home } from "./views/Home"
+import { Addpet } from "./views/Addpet"
+import { Profile } from "./views/Profile"
+import { Pet } from "./views/Pet"
 
-function App() {
+export function App() {
     const [view, setView] = useState('landing')
 
     const handleGoHome = () => {
@@ -24,6 +31,7 @@ function App() {
         setView('profile')
     }
 
+
     return <>
         {(view === 'landing') && <Landing onLogin={handleGoLogin} onRegisterClick={handleGoRegister} />}
 
@@ -31,11 +39,12 @@ function App() {
 
         {(view === 'register') && <Register onRegister={handleGoLogin} onLoginClick={handleGoLogin} />}
 
-        {(view === 'home') && <Home onLogout={handleGoLogin} onDelete={handleGoHome} onAddPetClick={handleAddPetClick} onProfileClick={handleProfileClick} />}
+        {(view === 'home') && <Home onLogout={handleGoLogin} onDelete={handleGoHome} onAddPetClick={handleAddPetClick} onProfileClick={handleProfileClick}  />}
 
         {(view === 'addpet') && <Addpet onBackClick={handleGoHome} onAddPet={handleGoHome} />}
 
         {(view === 'profile') && <Profile onBackClick={handleGoHome} />}
+
     </>
 }
 
