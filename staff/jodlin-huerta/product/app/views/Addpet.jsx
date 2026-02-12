@@ -8,12 +8,12 @@ import { H2 } from "./components/commons/H2"
 import { Form } from "./components/commons/Form"
 import { Field } from "./components/commons/Field"
 import { Button } from "./components/commons/Button"
-
+import { Feedback } from "./components/commons/Feedback"
 
 
 export function Addpet({ onBackClick, onAddPet }) {
 
-    const [message, setMessage] = useState('')
+    const [feedback, setFeedback] = useState(null)
 
     const handleBackClick = event => {
         event.preventDefault()
@@ -35,9 +35,9 @@ export function Addpet({ onBackClick, onAddPet }) {
                 .then(() => {
                     onAddPet()
                 })
-                .catch(error => setMessage(error.message))
+                .catch(error => setFeedback({ msg: error.message, level: 'success' }))
         } catch (error) {
-            setMessage(error.message)
+            setFeedback({ msg: error.message, level: 'success' })
         }
     }
 
@@ -63,6 +63,6 @@ export function Addpet({ onBackClick, onAddPet }) {
             <Button className="self-center" type="submit">Add Pet</Button>
         </Form>
 
-        <p>{message}</p>
+        {feedback && <Feedback feedback={feedback} />}
     </div>
 }

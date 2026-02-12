@@ -8,9 +8,12 @@ import { Field } from "./commons/Field"
 
 import { Button } from "./commons/Button"
 
+import { Feedback } from "./commons/Feedback"
+
 
 export function UpdateEmailProfile({ }) {
-    const [message, setMessage] = useState('')
+
+    const [feedback, setFeedback] = useState(null)
 
     const handleChangeEmail = event => {
         event.preventDefault()
@@ -22,12 +25,13 @@ export function UpdateEmailProfile({ }) {
 
         try {
             logic.updateUserEmail(currentEmail, newEmail, repeatEmail)
-            
-
-            form.reset()
-            setMessage('Email has been changed!!')
+                .then(() => {
+                    form.reset()
+                    setFeedback({ msg: 'Email has been changed!!', level: 'success' })
+                })
+                .catch(error => setFeedback({ msg: error.message, level: 'error' }))
         } catch (error) {
-            setMessage(error.message)
+            setFeedback({ msg: error.message, level: 'error' })
         }
     }
 
@@ -40,6 +44,6 @@ export function UpdateEmailProfile({ }) {
 
             <Button type="submit" className="self-center mt-3">Update Email</Button>
         </Form>
-        <p>{message}</p>
+        {feedback && <Feedback feedback={feedback} />}
     </div>
 }

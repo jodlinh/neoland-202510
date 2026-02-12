@@ -9,11 +9,11 @@ import { Form } from "./components/commons/Form"
 import { Field } from "./components/commons/Field"
 import { PasswordField } from "./components/commons/PasswordField"
 import { Button } from "./components/commons/Button"
-
+import { Feedback } from "./components/commons/Feedback"
 
 export function Login({ onLogin, onRegisterClick }) {
 
-    const [message, setMessage] = useState('')
+    const [feedback, setFeedback] = useState(null)
     const [passwordType, setPasswordType] = useState('password')
 
     const handleLoginSubmit = event => {
@@ -29,9 +29,9 @@ export function Login({ onLogin, onRegisterClick }) {
                 .then(() => {
                     onLogin()
                 })
-                .catch(error => setMessage(error.message))
+                .catch(error => setFeedback({ msg: error.message, level: 'error' }))
         } catch (error) {
-            setMessage(error.message)
+            setFeedback({ msg: error.message, level: 'error' })
         }
     }
 
@@ -54,6 +54,6 @@ export function Login({ onLogin, onRegisterClick }) {
         </Form>
         <A onClick={handleRegisterClick}>Register</A>
 
-        <p>{message}</p>
+        {feedback && <Feedback feedback={feedback} />}
     </div>
 }

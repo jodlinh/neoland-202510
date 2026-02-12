@@ -5,10 +5,11 @@ import { Register } from "./views/Register"
 import { Home } from "./views/Home"
 import { Addpet } from "./views/Addpet"
 import { Profile } from "./views/Profile"
-import { Pet } from "./views/Pet"
+import { PetDetail } from "./views/PetDetail"
 
 export function App() {
     const [view, setView] = useState('landing')
+    const [petDetail, setPetDetail] = useState(null)
 
     const handleGoHome = () => {
         setView('home')
@@ -31,6 +32,12 @@ export function App() {
         setView('profile')
     }
 
+    const handleGoPetDetailClick = (pet) => {
+        setView('petDetail')
+        setPetDetail(pet)
+
+    }
+
 
     return <>
         {(view === 'landing') && <Landing onLogin={handleGoLogin} onRegisterClick={handleGoRegister} />}
@@ -39,11 +46,13 @@ export function App() {
 
         {(view === 'register') && <Register onRegister={handleGoLogin} onLoginClick={handleGoLogin} />}
 
-        {(view === 'home') && <Home onLogout={handleGoLogin} onDelete={handleGoHome} onAddPetClick={handleAddPetClick} onProfileClick={handleProfileClick}  />}
+        {(view === 'home') && <Home onLogout={handleGoLogin} onDelete={handleGoHome} onAddPetClick={handleAddPetClick} onProfileClick={handleProfileClick} onPetDetailClick={handleGoPetDetailClick} />}
 
         {(view === 'addpet') && <Addpet onBackClick={handleGoHome} onAddPet={handleGoHome} />}
 
         {(view === 'profile') && <Profile onBackClick={handleGoHome} />}
+
+        {(view === 'petDetail') && <PetDetail pet={petDetail} onBackClick={handleGoHome} />}
 
     </>
 }

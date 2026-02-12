@@ -209,7 +209,7 @@ export class Logic {
         })
             .then(res => {
                 const { status } = res
-                
+
                 if (status === 400) {
                     return res.json()
                         .then(body => {
@@ -227,12 +227,6 @@ export class Logic {
 
         if (userId === null) throw new Error('user not logged in')
 
-        const user = data.findUserByUserId(userId)
-
-        if (user === null) throw new Error('user not exist')
-
-        if (user.password !== currentPassword) throw new Error('Current password is wrong')
-
         if (typeof newPassword !== "string") throw new Error("invalid password type");
         if (newPassword.length < 8) throw new Error("invalid password length");
 
@@ -241,12 +235,30 @@ export class Logic {
 
         if (newPassword !== newPasswordRepeat) throw new Error("password do no match")
 
-        data.changePasswordUser(newPassword)
+        return fetch('http://localhost:8080/users/password', {
+            method: 'PATCH',
+            headers: {
+                Authorization: 'Basic ' + userId,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ currentPassword, newPassword, newPasswordRepeat })
+        })
+            .then(res => {
+                const { status } = res
+
+                if (status === 400) {
+                    return res.json()
+                        .then(body => {
+                            const { error, message } = body
+                            throw new Error(message)
+                        })
+                }
+            })
     }
 
-    updateUserEmail(email, newEmail, newEmailRepeat) {
-        if (typeof email !== 'string') throw new Error('invalid email type')
-        if (!EMAIL_REGEX.test(email)) throw new Error('invalid email format')
+    updateUserEmail(currentEmail, newEmail, newEmailRepeat) {
+        if (typeof currentEmail !== 'string') throw new Error('invalid email type')
+        if (!EMAIL_REGEX.test(currentEmail)) throw new Error('invalid email format')
 
         if (typeof newEmail !== 'string') throw new Error('Invalid New Email type')
         if (!EMAIL_REGEX.test(newEmail)) throw new Error('invalid new email format')
@@ -255,11 +267,28 @@ export class Logic {
         if (!EMAIL_REGEX.test(newEmailRepeat)) throw new Error('invalid newEmailRepeat format')
 
         if (newEmail !== newEmailRepeat) throw new Error('New email do not match New Email Repeat')
-        const user = data.findUserByUserId(data.getLoggedUserId())
 
-        if (user.email !== email) throw new Error('email do not belong to user')
+        const userId = data.getLoggedUserId()
 
-        user.email = newEmail
+        return fetch('http://localhost:8080/users/email', {
+            method: 'PATCH',
+            headers: {
+                Authorization: 'Basic ' + userId,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ currentEmail, newEmail, newEmailRepeat })
+        })
+            .then(res => {
+                const { status } = res
+
+                if (status === 400) {
+                    return res.json()
+                        .then(body => {
+                            const { error, message } = body
+                            throw new Error(message)
+                        })
+                }
+            })
     }
 }
 

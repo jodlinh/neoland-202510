@@ -9,12 +9,12 @@ import { Form } from "./components/commons/Form"
 import { Field } from "./components/commons/Field"
 import { PasswordField } from "./components/commons/PasswordField"
 import { Button } from "./components/commons/Button"
-
+import { Feedback } from "./components/commons/Feedback"
 
 
 export function Register({ onRegister, onLoginClick }) {
 
-    const [message, setMessage] = useState('')
+    const [feedback, setFeedback] = useState(null)
 
     const handleRegisterSubmit = event => {
         event.preventDefault()
@@ -30,10 +30,11 @@ export function Register({ onRegister, onLoginClick }) {
             logic.registerUser(name, email, username, password, passwordRepeat)
                 .then(() => {
                     onRegister()
+                    setFeedback(null)
                 })
-                .catch(error => setMessage(error.message))
+                .catch(error => setFeedback({ msg: error.message, level: 'error' }))
         } catch (error) {
-            setMessage(error.message)
+            setFeedback({ msg: error.message, level: 'error' })
         }
     }
 
@@ -45,8 +46,6 @@ export function Register({ onRegister, onLoginClick }) {
     }
 
     const handleLoginClick = () => {
-        setMessage('')
-
         onLoginClick()
     }
 
@@ -73,7 +72,7 @@ export function Register({ onRegister, onLoginClick }) {
 
         <A onClick={handleLoginClick}>Login</A>
 
-        <p>{message}</p>
+        {feedback && <Feedback feedback={feedback} />}
     </div>
 
 }

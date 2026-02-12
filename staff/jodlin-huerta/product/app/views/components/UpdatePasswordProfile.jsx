@@ -8,9 +8,11 @@ import { Button } from "./commons/Button"
 
 import { logic } from "../../logic"
 
+import { Feedback } from "./commons/Feedback"
+
 
 export function UpdatePasswordProfile() {
-    const [message, setMessage] = useState('')
+    const [feedback, setFeedback] = useState(null)
 
     const handleChangePassword = event => {
         event.preventDefault()
@@ -22,11 +24,13 @@ export function UpdatePasswordProfile() {
 
         try {
             logic.updateUserPassword(currentPassword, newPassword, newPasswordRepeat)
-
-            form.reset()
-            setMessage('Password has been changed!!')
+                .then(() => {
+                    form.reset()
+                    setFeedback({ msg: 'Password has been changed!!', level: 'success' })
+                })
+                .catch(error => setFeedback({ msg: error.message, level: 'error' }))
         } catch (error) {
-            setMessage(error.message)
+            setFeedback({ msg: error.message, level: 'error' })
         }
     }
 
@@ -38,6 +42,6 @@ export function UpdatePasswordProfile() {
 
             <Button type="submit" className="self-center mt-3" >Update Password</Button>
         </Form>
-        <p>{message}</p>
+        {feedback && <Feedback feedback={feedback} />}
     </div>
 }

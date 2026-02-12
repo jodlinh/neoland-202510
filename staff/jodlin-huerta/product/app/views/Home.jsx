@@ -3,30 +3,28 @@ import { A } from "./components/commons/A"
 import { H1 } from "./components/commons/H1"
 import { H2 } from "./components/commons/H2"
 import { Button } from "./components/commons/Button"
-import { PetList } from "./components/PerList"
+import { PetList } from "./components/PetList"
 
 import { logic } from "../logic"
 
-export function Home({ onLogout, onAddPetClick, onProfileClick }) {
-
-    const [message, setMessage] = useState('')
-
+export function Home({ onLogout, onAddPetClick, onProfileClick, onPetDetailClick }) {
 
     const handleLogoutClick = event => {
         event.preventDefault()
 
         logic.logoutUser()
 
-        setMessage('')
-
         onLogout()
-
     }
 
     const handleAddPetClick = event => {
         event.preventDefault()
 
         onAddPetClick()
+    }
+
+    const handlePetDetailClick = pet => {
+        onPetDetailClick(pet)
     }
 
     const handleProfileClick = event => {
@@ -42,10 +40,10 @@ export function Home({ onLogout, onAddPetClick, onProfileClick }) {
         <div className="flex justify-between">
             <A className="font-bold " onClick={handleAddPetClick}>+ Pet</A>
             <A className="font-bold self-center" onClick={handleProfileClick}>👤 Profile</A>
-            <Button onClick={handleLogoutClick}>Logout</Button>
+            <A onClick={handleLogoutClick}>Logout</A>
         </div>
 
-        <PetList />
-        <p>{message}</p>
+        <PetList onPetDetailClick={handlePetDetailClick} />
+
     </div>
 }
