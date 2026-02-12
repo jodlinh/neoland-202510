@@ -40,11 +40,11 @@ api.post('/users', jsonBodyParser, (req, res) => {
 
 api.patch('/users/email', jsonBodyParser, (req, res) => {
     try {
-        const { currentEmail, newEmail, repeatEmail } = req.body
+        const { currentEmail, newEmail, newEmailRepeat } = req.body
 
         const userId = req.headers.authorization.slice(6)
 
-        logic.updateUserEmail(userId, currentEmail, newEmail, repeatEmail)
+        logic.updateUserEmail(userId, currentEmail, newEmail, newEmailRepeat)
 
         res.status(204).send()
 
@@ -116,11 +116,12 @@ api.get('/pets', (req, res) => {
     }
 })
 
-api.get('/pet', (req, res) => {
+api.get('/pets/:petId', (req, res) => {
     try {
 
         const userId = req.headers.authorization.slice(6)
-        const petId = req.query.id
+
+        const { petId } = req.params
 
         const pet = logic.getPetById(userId, petId)
 

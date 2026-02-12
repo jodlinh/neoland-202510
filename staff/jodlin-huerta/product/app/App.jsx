@@ -9,7 +9,7 @@ import { PetDetail } from "./views/PetDetail"
 
 export function App() {
     const [view, setView] = useState('landing')
-    const [petDetail, setPetDetail] = useState(null)
+    const [idPet, setIdPet] = useState(null)
 
     const handleGoHome = () => {
         setView('home')
@@ -32,9 +32,9 @@ export function App() {
         setView('profile')
     }
 
-    const handleGoPetDetailClick = (pet) => {
+    const handleGoPetDetailClick = (idPet) => {
         setView('petDetail')
-        setPetDetail(pet)
+        setIdPet(idPet)
 
     }
 
@@ -52,7 +52,7 @@ export function App() {
 
         {(view === 'profile') && <Profile onBackClick={handleGoHome} />}
 
-        {(view === 'petDetail') && <PetDetail pet={petDetail} onBackClick={handleGoHome} />}
+        {(view === 'petDetail') && <PetDetail idPet={idPet} onBackClick={handleGoHome} />}
 
     </>
 }

@@ -23,8 +23,8 @@ export function Home({ onLogout, onAddPetClick, onProfileClick, onPetDetailClick
         onAddPetClick()
     }
 
-    const handlePetDetailClick = pet => {
-        onPetDetailClick(pet)
+    const handlePetDetailClick = idPet => {
+        onPetDetailClick(idPet)
     }
 
     const handleProfileClick = event => {

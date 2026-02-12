@@ -57,16 +57,10 @@ export function PetList({ onPetDetailClick }) {
     }
 
     const handlePetClick = event => {
-       // event.preventDefault()
         try {
-            const button = event.target
-            const idPet = button.id
+            const petId = event.currentTarget.dataset.petId
 
-            logic.getPetById(idPet)
-                .then(pet => {
-                    onPetDetailClick(pet)
-                })
-                .catch(error => setMessage(error.message))
+            onPetDetailClick(petId)
         } catch (error) {
             setMessage(error.message)
         }
@@ -77,7 +71,7 @@ export function PetList({ onPetDetailClick }) {
         <ul className="flex flex-col gap-2 mt-2">
             {petList.map(pet => <li className="flex items-center  border-2 border-black p-2  mb-2 justify-between"  >
                 <div className="flex gap-4 items-center" >
-                    <img src={pet.image} className="rounded-full w-10 h-10 object-cover" id={pet.id}  onClick={handlePetClick} />
+                    <img src={pet.image} className="rounded-full w-10 h-10 object-cover" data-pet-id={pet.id} onClick={handlePetClick} />
                     <p>{pet.name}</p>
                 </div>
                 <div className="justify-self-end ">

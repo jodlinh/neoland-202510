@@ -164,7 +164,7 @@ export class Logic {
 
         if (!PET_ID_REGEX.test(petId)) throw new Error('invalid pet-id format')
 
-        return fetch(`http://localhost:8080/pet?id=${petId}`, {
+        return fetch('http://localhost:8080/pets/' + petId, {
             method: 'GET',
             headers: {
                 'Authorization': 'Basic ' + userId
