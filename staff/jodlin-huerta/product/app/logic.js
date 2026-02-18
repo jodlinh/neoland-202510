@@ -218,8 +218,54 @@ export class Logic {
                         })
                 }
             })
+    }
 
 
+    updatePet(petId, name, birthdate, weight, image) {
+        const userId = data.getLoggedUserId()
+
+        if (userId === null) throw new Error('user not logged in')
+
+        if (typeof petId !== 'string') throw new Error('invalid pet-id type')
+
+        if (!PET_ID_REGEX.test(petId)) throw new Error('invalid pet-id format')
+
+        if (typeof name !== 'string') throw new Error('invalid name type')
+        if (name.length < 1) throw new Error('Invalid name length')
+
+        if (!ISO_DATE_REGEX.test(birthdate)) throw new Error('Invalid birthday format')
+
+        if (typeof weight !== 'number' || isNaN(weight) || weight === 0) throw new Error('Invalid weight type')
+
+        if (typeof image !== 'string') throw new Error('Invalid image type')
+
+        if (!URL_REGEX.test(image)) throw new Error('Invalid image format')
+
+        return fetch('http://localhost:8080/pets/' + petId, {
+            method: 'PUT',
+            headers: {
+                Authorization: 'Basic ' + userId,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name, birthdate, weight, image })
+        })
+            .then(res => {
+                const { status } = res
+
+                if (status === 200) {
+                    return res.json()
+                        .then(pet => {
+                            return pet
+                        })
+                }
+
+                return res.json()
+                    .then(body => {
+                        const { error, message } = body
+                        throw new Error(message)
+                    })
+
+            })
     }
 
     updateUserPassword(currentPassword, newPassword, newPasswordRepeat) {

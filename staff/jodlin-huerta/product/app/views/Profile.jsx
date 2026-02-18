@@ -30,7 +30,7 @@ export function Profile({ onBackClick }) {
         <H1>MyPet</H1>
         <div className="flex justify-between">
             <H2>Profile</H2>
-            <A onClick={handleBackClick}>&lt; Back</A>
+            <A onClick={handleBackClick}>Back</A>
         </div>
 
         <ul className="border rounded-lg  mt-4 mb-4">

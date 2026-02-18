@@ -21,14 +21,8 @@ export function PetList({ onPetDetailClick }) {
         }
     }, [])
 
-    const handleDeletePetClick = event => {
-        event.preventDefault()
+    const handleDeletePetClick = idPet => setDeletePetId(idPet)
 
-        const button = event.target
-        const idPet = button.id
-
-        setDeletePetId(idPet)
-    }
 
     const handleNoDeletePet = event => {
         event.preventDefault()
@@ -56,26 +50,21 @@ export function PetList({ onPetDetailClick }) {
         }
     }
 
-    const handlePetClick = event => {
-        try {
-            const petId = event.currentTarget.dataset.petId
-
-            onPetDetailClick(petId)
-        } catch (error) {
-            setMessage(error.message)
-        }
-    }
-
+    const handlePetClick = petId => onPetDetailClick(petId)
 
     return <div>
         <ul className="flex flex-col gap-2 mt-2">
             {petList.map(pet => <li className="flex items-center  border-2 border-black p-2  mb-2 justify-between"  >
                 <div className="flex gap-4 items-center" >
-                    <img src={pet.image} className="rounded-full w-10 h-10 object-cover" data-pet-id={pet.id} onClick={handlePetClick} />
+                    <img src={pet.image} className="rounded-full w-10 h-10 object-cover" onClick={() => handlePetClick(pet.id)} />
                     <p>{pet.name}</p>
                 </div>
                 <div className="justify-self-end ">
-                    <Button className="justify-self-end m-1" id={pet.id} onClick={handleDeletePetClick}>🗑️</Button>
+                    <Button className="justify-self-end m-1" onClick={(event) => {
+                        event.stopPropagation()
+                        handleDeletePetClick(pet.id)
+                    }
+                    }>🗑️</Button>
                 </div>
             </li>)}
         </ul>
