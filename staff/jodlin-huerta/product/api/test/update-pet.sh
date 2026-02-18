@@ -1,0 +1,1 @@
+curl -X PUT -H 'Authorization: Basic user-0' -H 'Content-type: application/json' -d '{"name": "Pinto Jose", "birthdate": "2030-02-02", "weight":10, "image":"https://www.shutterstock.com/image-photo/beautiful-golden-retriever-cute-puppy-260nw-2526542701.jpg" }' http://localhost:8080/pets/pet-0 -v

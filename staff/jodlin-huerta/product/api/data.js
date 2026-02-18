@@ -84,6 +84,20 @@ class Data {
         this.petsCount++
     }
 
+    updatePet(petId, name, birthdate, weight, image) {
+        for (let i = 0; i < this.pets.length; i++) {
+            const pet = this.pets[i]
+            if (pet.id === petId) {
+                pet.name = name
+                pet.birthday = birthdate
+                pet.weight = weight
+                pet.image = image
+
+                return pet
+            }
+        }
+    }
+
     findPetsByUserId(userId) {
         const foundPets = []
         for (let i = 0; i < this.pets.length; i++) {

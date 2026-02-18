@@ -38,6 +38,22 @@ api.post('/users', jsonBodyParser, (req, res) => {
     }
 })
 
+api.get('/users/me', (req, res) => {
+    try {
+
+        const userId = req.headers.authorization.slice(6)
+
+        const user = logic.getUser(userId)
+       
+
+        res.status(200).json(user)
+    } catch (error) {
+        res.status(400).json({ error: error.constructor.name, message: error.message })
+
+    }
+
+})
+
 api.patch('/users/email', jsonBodyParser, (req, res) => {
     try {
         const { currentEmail, newEmail, newEmailRepeat } = req.body
@@ -125,7 +141,7 @@ api.get('/pets/:petId', (req, res) => {
 
         const pet = logic.getPetById(userId, petId)
 
-        res.status(200).json(pet)
+        res.status(200).json(pet)   //status es por defecto 200, si no lo coloco
     } catch (error) {
         res.status(400).json({ error: error.constructor.name, message: error.message })
 
@@ -145,6 +161,21 @@ api.delete('/pets/:petId', (req, res) => {
     } catch (error) {
         res.status(400).json({ error: error.constructor.name, message: error.message })
 
+    }
+})
+
+api.put('/pets/:petId', jsonBodyParser, (req, res) => {
+    try {
+        const userId = req.headers.authorization.slice(6)
+        const { petId } = req.params
+        const { name, birthdate, weight, image } = req.body
+
+        const pet = logic.updatePet(userId, petId, name, birthdate, weight, image)
+
+        res.status(200).json(pet)
+
+    } catch (error) {
+        res.status(400).json({ error: error.constructor.name, message: error.message })
     }
 })
 

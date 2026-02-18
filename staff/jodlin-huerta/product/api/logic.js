@@ -119,9 +119,45 @@ class Logic {
         if (!PET_ID_REGEX.test(petId)) throw new Error('invalid pet-id format')
 
         const pet = data.findPetsById(petId)
+
+        if (pet.userId !== userId) throw new Error('user not owner of pet')
+
         if (pet === null) throw new Error('Pet not found')
 
         return pet
+    }
+
+    updatePet(userId, petId, name, birthdate, weight, image) {
+        if (typeof userId !== 'string') throw new Error('invalid userId type')
+        if (!USER_ID_REGEX.test(userId)) throw new Error('invalid userId format')
+
+        const user = data.findUserByUserId(userId)
+        if (user === null) throw new Error('user not found')
+
+        if (typeof petId !== 'string') throw new Error('invalid pet-id type')
+
+        if (!PET_ID_REGEX.test(petId)) throw new Error('invalid pet-id format')
+
+        if (typeof name !== 'string') throw new Error('invalid name type')
+        if (name.length < 1) throw new Error('Invalid name length')
+
+        if (!ISO_DATE_REGEX.test(birthdate)) throw new Error('Invalid birthday format')
+
+        if (typeof weight !== 'number' || isNaN(weight) || weight === 0) throw new Error('Invalid weight type')
+
+        if (typeof image !== 'string') throw new Error('Invalid image type')
+
+        if (!URL_REGEX.test(image)) throw new Error('Invalid image format')
+
+        const pet = data.findPetsById(petId)
+
+        if (pet.userId !== userId) throw new Error('user not owner of pet')
+
+        if (pet === null) throw new Error('Pet not found')
+
+        const petUpdated = data.updatePet(petId, name, birthdate, weight, image)
+
+        return petUpdated
     }
 
 
@@ -143,6 +179,19 @@ class Logic {
 
         const petIndex = data.pets.indexOf(pet)
         data.pets.splice(petIndex, 1)
+    }
+
+    getUser(userId) {
+
+        if (typeof userId !== 'string') throw new Error('invalid userId type')
+        if (!USER_ID_REGEX.test(userId)) throw new Error('invalid userId format')
+
+        const user = data.findUserByUserId(userId)
+        if (user === null) throw new Error('user not found')
+
+        const { name, image, username } = user
+        return { name, image, username }
+
     }
 
     updateUserPassword(userId, currentPassword, newPassword, newPasswordRepeat) {
